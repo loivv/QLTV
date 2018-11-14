@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Danh sách quản trị các trường</h2>
+                    <div class="nav navbar-right">
+                        <button type="button" class="btn btn-primary" ng-click="createAccount()" >Thêm quản lý</button>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- end x_title-->
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Chọn trường</label>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <select ui-select2 class="form-control" ng-model="searchInfo.MaTruong" ng-change="getData()">
+                                            <option ng-repeat="x in schools" value="{{x.code}}">{{x.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="button" class="btn btn-primary" ng-click="getData()">XEM</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th>STT</th>
+                                            <th>UserName</th>
+                                            <th>Họ tên</th>
+                                            <th>Kích hoặt</th>
+                                            <th>Đổi mk</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="x in accounts">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{x.UserName}}</td>
+                                            <td>{{x.FullName}}</td>
+                                            <td><input type="checkbox" ng-model="x.IsActive" ng-checked="x.IsActive" ng-change="activeAccounts($index)" /></td>
+                                            <td><a href="#" ng-click="showChangePass($index)">Đổi mật khẩu</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end x_content-->
+            </div>
+            <!-- end x_pannel-->
+        </div>
+    </div>
+
+    <div id="createAccount" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">THÊM QUẢN TRỊ</h4>
+                </div>
+                <form ng-submit="finishCreate()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" ng-model="account.UserName" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input type="text" ng-model="account.FullName" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" ng-model="account.Password" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu</label>
+                            <input type="password" ng-model="account.ConfirmPassword" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>Trường</label>
+                            <select ui-select2="{width: '100%'}" class="form-control" ng-model="account.MaTruong" required>
+                                <option ng-repeat="x in schools" value="{{x.code}}">{{x.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="changepassmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đổi mật khẩu</h4>
+                </div>
+                <form ng-submit="finishChangePass()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" value="{{changePass.UserName}}" class="form-control"  disabled/>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input type="text" value="{{changePass.FullName}}" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" ng-model="changePass.Password" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu</label>
+                            <input type="password" ng-model="changePass.ConfirmPassword" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" >Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    
+    <script type="text/javascript">
+        
+    </script>
+
+
+    <script src="~/Scripts/quantri/quantri.js"></script>
+}
+

@@ -14,8 +14,8 @@ namespace LB.Models
     
     public partial class Tbl_NhomNguoiDung
     {
+        public string MaTruong { get; set; }
         public string MaNhom { get; set; }
         public string TenNhom { get; set; }
-        public string MaTruong { get; set; }
     }
 }

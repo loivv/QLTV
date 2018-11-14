@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.SqlClient;
 namespace LB.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class BaseController : Controller
     {
         // GET: Base
@@ -18,33 +18,26 @@ namespace LB.Controllers
         protected RoleManager<IdentityRole> RoleManager { get; private set; }
 
         protected UserManager<ApplicationUser> UserManager { get; private set; }
+
         private ApplicationDbContext sdb = new ApplicationDbContext();
 
         public string MaTruong;
-        public bool? PhanLoai; //phong hay truong hay so
         public string TenTruong;
-        public List<string> roles;
-        public int? NamHoc;
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             MaTruong = "LQDON";
-            NamHoc = 1; //xóa xóa xóa
             base.Initialize(requestContext);
 
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 var checkUser = db.AspNetUsers.Where(p => p.UserName == requestContext.HttpContext.User.Identity.Name).FirstOrDefault();
-                MaTruong = "LQDON";
+               
                 if (checkUser != null)
                 {
                     MaTruong = checkUser.MaTruong;
-                    MaTruong = "LQDON";
                     var checkloai = db.Tbl_ThongTin.Where(x => x.MaTruong == MaTruong).FirstOrDefault();
-                    PhanLoai = checkloai.Phong; // phòng = true , truong = false
                     TenTruong = checkloai.TenTruong;
-                    NamHoc = checkloai.NamHoc;
-
                 }
             }
         }
@@ -52,8 +45,8 @@ namespace LB.Controllers
         {
             RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(sdb));
             UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(sdb));
-
         }
+
         //[HttpGet]
         public ActionResult Menus()
         {

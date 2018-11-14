@@ -7,7 +7,9 @@ namespace LB.Models
 {
     public class IdentityCommon
     {
+        public string code { get; set; }
 
+        public string name { get; set; }
     }
     public class ResultInfo
     {

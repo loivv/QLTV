@@ -23,7 +23,7 @@ namespace LB.Controllers.HeThong
             if (String.IsNullOrEmpty(tt.TenTruong))
                 return Json(new ResultInfo() { error = 1, msg = "Missing info" }, JsonRequestBehavior.AllowGet);
        
-            var check = db.Tbl_ThongTin.Where(p => p.MaTruong == MaTruong && p.NamHoc == NamHoc).FirstOrDefault();
+            var check = db.Tbl_ThongTin.Where(p => p.MaTruong == MaTruong ).FirstOrDefault();
 
             if (check == null)
             {

@@ -32,9 +32,9 @@ namespace LB.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -50,6 +50,7 @@ namespace LB.Controllers
             }
         }
 
+        /*
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -74,7 +75,7 @@ namespace LB.Controllers
             };
             return View(model);
         }
-
+        */
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -98,7 +99,7 @@ namespace LB.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
-
+        /*
         //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
@@ -210,7 +211,7 @@ namespace LB.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
-
+        */
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
@@ -241,7 +242,7 @@ namespace LB.Controllers
             AddErrors(result);
             return View(model);
         }
-
+        /*
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
@@ -319,6 +320,106 @@ namespace LB.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
+        */
+        ssofty_com_thuvienEntities db = new ssofty_com_thuvienEntities();
+        [HttpPost]
+        [Authorize(Roles = "sadmin")]
+        public async Task<ActionResult> SetPasswordAdmin(SetPasswordUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var find = db.AspNetUsers.Where(p => p.UserName == model.UserName && p.UType == "ADMIN").FirstOrDefault();
+
+                if (find != null)
+                {
+                    find.PasswordHash = null;
+                    db.Entry(find).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Json(new ResultInfo()
+                    {
+                        error = 1,
+                        msg = "Sai tài khoản"
+                    });
+                }
+
+                var result = await UserManager.AddPasswordAsync(find.Id, model.Password);
+                if (result.Succeeded)
+                {
+                    return Json(new ResultInfo()
+                    {
+                        error = 0
+                    });
+                }
+                AddErrors(result);
+            }
+
+            var errors = ModelState.Select(x => x.Value.Errors)
+                          .Where(y => y.Count > 0)
+                          .FirstOrDefault();
+            // If we got this far, something failed, redisplay form
+            return Json(new ResultInfo()
+            {
+                error = 1,
+                msg = errors.Select(p => p.ErrorMessage).FirstOrDefault()
+            });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult> SetPasswordUser (SetPasswordUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.UserName == User.Identity.Name)
+                {
+                    return Json(new ResultInfo()
+                    {
+                        error = 1,
+                        msg = "Nếu bạn là Admin thì bạn không thể đổi mật khẩu của chính tài khoản bạn"
+                    });
+                }
+
+                var find = db.AspNetUsers.Where(p => p.UserName == model.UserName && p.UType == "USER").FirstOrDefault();
+
+                if (find != null)
+                {
+                    find.PasswordHash = null;
+                    db.Entry(find).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Json(new ResultInfo()
+                    {
+                        error = 1,
+                        msg = "Sai tài khoản"
+                    });
+                }
+
+                var result = await UserManager.AddPasswordAsync(find.Id, model.Password);
+                if (result.Succeeded)
+                {
+                    return Json(new ResultInfo()
+                    {
+                        error = 0
+                    });
+                }
+                AddErrors(result);
+            }
+
+            var errors = ModelState.Select(x => x.Value.Errors)
+                          .Where(y => y.Count > 0)
+                          .FirstOrDefault();
+            // If we got this far, something failed, redisplay form
+            return Json(new ResultInfo()
+            {
+                error = 1,
+                msg = errors.Select(p => p.ErrorMessage).FirstOrDefault()
+            });
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -331,7 +432,7 @@ namespace LB.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +483,6 @@ namespace LB.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
