@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="971b062e2ac24fb59c53f280eaae6fac" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_BanQuyen" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_BaoCao_SapXep" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_BienMuc" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_DinhDangTaiLieu" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_DocGia" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_KhoiHoc" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_KhoSach" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_KiemKe" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_KiemKeChiTiet" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_KyHieuPhanLoai" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_LoaiVanBan" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_LyDoPhatThe" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_MonHoc" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NamHoc" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NgonNgu" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhaCungCap" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhaCungCap_TheoNgay" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhaCungCap_TheoThang" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhaCungCap_TheoTuan" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhanVien" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhapSach" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhaXuatBan" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhomDocGia" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_NhomNguoiDung" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_PhanLoai" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_PhanQuyen" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_PhatTheBanDoc" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_PhongTruong" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_Sach" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_SoCaBiet" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_SoTongQuat_Phan1" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_TacGia" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_ThanhLy" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_ThanhLyChiTiet" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_ThongTin" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_TinhChatNguonNhap" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_TinhTrangAnPham" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_TongQuat_Phan1_1" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_TrangThaiAnPham" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_VanBan" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_XuatSachChiTiet" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.Tbl_XuatSachTong" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.AspNetUser" Width="1.5" PointX="7.375" PointY="17.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.UMS_GroupMenu" Width="1.5" PointX="13.375" PointY="18.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.UMS_Menu" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.UMS_MenuGroupUser" Width="1.5" PointX="19.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.UMS_UserGroups" Width="1.5" PointX="19.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.C__MigrationHistory" Width="1.5" PointX="19.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.AspNetRole" Width="1.5" PointX="19.375" PointY="13.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.AspNetUserClaim" Width="1.5" PointX="15.375" PointY="19.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.AspNetUserLogin" Width="1.5" PointX="19.375" PointY="16.75" />
+        <EntityTypeShape EntityType="ssofty_com_thuvienModel.AspNetUserRole" Width="1.5" PointX="17.375" PointY="19.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

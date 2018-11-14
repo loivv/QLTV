@@ -1,0 +1,141 @@
+﻿@{
+    ViewBag.Title = "Thông tin chung";
+    //var data = ViewBag.Info;
+}
+
+<div class="row" ng-app="myApp" ng-controller="myCtrl">
+    <!-- body-->
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Đơn vị cấp trên</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.DonViCapTren" required />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Tên đơn vị</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.TenTruong" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.DiaChi" />
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.SoDienThoai" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Fax</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.Fax" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.Email" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.Website" />
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Năm học</label>
+                    <select class="form-control" ng-model="ThongTin.NamHoc" required>
+                        <option ng-repeat="x in AllNamHoc" value="{{x.Ma}}">{{x.Ten | uppercase}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Hiệu trưởng</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.HieuTruong" />
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Kế toán</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.KeToan" />
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Thủ thư</label>
+                    <input type="text" class="form-control" ng-model="ThongTin.ThuThu" />
+                </div>
+            </div>           
+
+        </div>
+    </div>
+    <!-- end body-->
+    <!-- begin footer-->
+    <div class="modal-footer">
+        <button ng-click="edit()" class="btn btn-default">Lưu</button>
+    </div>
+    <!-- end footer-->
+</div>
+
+@section scripts {
+
+    <script>
+
+        // tao controller
+        var app = angular.module('myApp', ['ui.bootstrap']);
+        //var app = angular.module('myApp', ['ngRoute']);
+        app.controller('myCtrl', function ($scope, $http) {
+
+            $scope.AllNamHoc = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.NamHoc))');
+            $scope.ThongTin = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.Info))');
+
+            $scope.edit = function () {
+                showLoader(true);
+                //update data
+                $http({
+                    method: "POST",
+                    url: "/ThongTinChung/edit",
+                    data: $scope.ThongTin
+                }).then(
+                    function success(response) {
+
+                        var result = response.data;
+
+                        if (result.error == 0) {
+
+                            showNotify("Đã cập nhật");
+
+                        } else {
+
+                            alert(result.msg);
+
+                        }
+
+                        showLoader(false);
+
+                    },
+                    function errror(response) {
+                        showLoader(false);
+                        showNotify("connect has disconnect");
+                    }
+                    );
+                //ket thuc update
+            };
+        });
+
+    </script>
+}
