@@ -168,6 +168,7 @@
     <Compile Include="Controllers\DanhMuc\KhoAnPhamController.cs" />
     <Compile Include="Controllers\DanhMuc\NhaXuatBanController.cs" />
     <Compile Include="Controllers\DanhMuc\TacGiaController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HeThong\MonHocController.cs" />
     <Compile Include="Controllers\HeThong\NamHocController.cs" />
     <Compile Include="Controllers\HeThong\NgonNguController.cs" />
@@ -176,7 +177,9 @@
     <Compile Include="Controllers\HeThong\ThongTinChungController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\QuanTri\QuanTriController.cs" />
+    <Compile Include="Filters\MyValidateAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +197,9 @@
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserRole.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GROUPUSER_GETLISTMENU_Result.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityCommon.cs" />
@@ -350,6 +356,15 @@
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UMS_UserGroups.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER_CHECKACCESS_Result.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER_CHECKADMIN_Result.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER_GETMENU_Result.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -918,10 +933,14 @@
     <Content Include="Views\TacGia\Show.cshtml" />
     <Content Include="Views\NhaXuatBan\Show.cshtml" />
     <Content Include="Views\QuanTri\Show.cshtml" />
+    <Content Include="Views\Error\ReLogin.cshtml" />
+    <Content Include="Views\QuanTri\ShowMenu.cshtml" />
+    <Content Include="Views\Shared\_NoneView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

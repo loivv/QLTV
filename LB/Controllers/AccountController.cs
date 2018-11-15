@@ -85,7 +85,14 @@ namespace LB.Controllers
                     var findUser = db.AspNetUsers.Where(p => p.UserName == model.UserName).FirstOrDefault();
                     if (findUser.IsActive == true)
                     {
-                        return RedirectToLocal(returnUrl);
+                        if (findUser.UType == "SADMIN")
+                        {
+                            return RedirectToAction("show", "quantri");
+                        } else
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
+
                     }
                     else
                     {
@@ -112,7 +119,7 @@ namespace LB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, IsActive = true, MaTruong = model.MaTruong, HoTen = model.FullName, UType = "ADMIN"};
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.UserName, IsActive = true, MaTruong = model.MaTruong, HoTen = model.FullName, UType = "ADMIN"};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -145,7 +152,7 @@ namespace LB.Controllers
             {
                 var findCreator = db.AspNetUsers.Where(p => p.UserName == User.Identity.Name).FirstOrDefault();
 
-                var user = new ApplicationUser { UserName = model.UserName, IsActive = true, MaTruong = findCreator.MaTruong, HoTen = model.FullName, UType = "USER", Email = model.Email, PhoneNumber = model.Phone, AddressInfo = model.Address , Sex = model.Sex, UserGroup = model.Group};
+                var user = new ApplicationUser { UserName = model.UserName, IsActive = true, MaTruong = findCreator.MaTruong, HoTen = model.FullName, UType = "USER", Email = model.UserName, PhoneNumber = model.Phone, AddressInfo = model.Address , Sex = model.Sex, UserGroup = model.Group};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 

@@ -31,7 +31,7 @@ app.controller('myCtrl', function ($scope, $http, $filter) {
 
     $scope.modify = function (idx) {
         $scope.account = $scope.accounts[idx];
-        showModel('addNgDungModal');
+        showModel('modifyNgDungModal');
     };
 
     $scope.finishCreate = function () {
@@ -72,7 +72,7 @@ app.controller('myCtrl', function ($scope, $http, $filter) {
             if (result.error === 1) {
                 alert(result.msg);
             } else {
-                hideModel('addNgDungModal');
+                hideModel('modifyNgDungModal');
                 showNotify("Đã chỉnh sửa");
                 $scope.getData();
             }

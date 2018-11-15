@@ -90,16 +90,11 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a>HỆ THỐNG<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/DonVi/Show">Tạo đơn vị</a></li>
-                                        <li><a href="/Account/Register">Đăng ký admin</a></li>
-                                        <li><a href="/nhomnguoidung/show">Nh&#243;m người d&#249;ng</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            @if (Request.IsAuthenticated)
+                            { 
+                                @Html.Action("AdminMenu", "Menu")
+                                @Html.Action("Menus", "Menu")
+                            }
                         </div>
                     </div>
                 </div>
@@ -115,8 +110,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name
-                                    <span class=" fa fa-angle-down"></span>
+                                    <strong>@User.Identity.Name</strong>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li>
@@ -124,10 +118,9 @@
                                             Đổi mật khẩu
                                         </a>
                                     </li>
-                                    <li><a href="javascript:;">Help</a></li>
                                     <li>
                                         <a href="javascript:document.getElementById('logoutForm').submit()">
-                                            <span>Logout</span>
+                                            <span>Thoát</span>
                                         </a>
                                     </li>
                                 </ul>

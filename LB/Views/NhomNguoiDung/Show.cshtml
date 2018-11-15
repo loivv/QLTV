@@ -2,51 +2,130 @@
     ViewBag.Title = "Thông tin nhóm người dùng";
 }
 
-<div class="row" ng-app="myApp" ng-controller="myCtrl">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>NHÓM NGƯỜI DÙNG</h2>
-            <div class="nav navbar-right">
-                <button type="button" class="btn btn-primary" ng-click="createDelivery()">Thêm nhóm</button>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="row">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>NHÓM NGƯỜI DÙNG</h2>
+                <div class="nav navbar-right">
+                    <button type="button" class="btn btn-primary" ng-click="showAddGroups()">Thêm nhóm</button>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                <ul class="nav nav-tabs bar_tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#tab_monitor" role="tab" data-toggle="tab" aria-expanded="false">Danh sách</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#tab_sophat" role="tab" data-toggle="tab" aria-expanded="false">Phân quyền</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active in" id="tab_monitor" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-sm-12">
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab_monitor" role="tab" data-toggle="tab" aria-expanded="false">Danh sách</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab_sophat" role="tab" data-toggle="tab" aria-expanded="false">Phân quyền</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active in" id="tab_monitor" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped jambo_table bulk_action">
+                                            <thead>
+                                                <tr class="headings">
+                                                    <th>STT</th>
+                                                    <th>Tên nhóm</th>
+                                                    <th>Kích hoặt</th>
+                                                </tr>
+                                            </thead>
 
+                                            <tbody>
+                                                <tr ng-repeat="item in groups">
+                                                    <td>{{$index + 1}}&nbsp;&nbsp;<a href="#" ng-click="showEditGroup($index)">Chi tiết</a>&nbsp;&nbsp;<a href="#" ng-click="showMenus($index)" ng-show="item.active">Phân quyền</a></td>
+                                                    <td>{{item.GroupName}}</td>
+                                                    <td><input type="checkbox" ng-model="item.active" ng-checked="item.active" ng-change="activeGroups($index)" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div role="tabpanel" class="tab-pane" id="tab_sophat" aria-labelledby="profile-tab">
-                        <div class="row">
-                            <div class="col-sm-12">
+                        <div role="tabpanel" class="tab-pane" id="tab_sophat" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3>Nhóm: {{GroupName}}</h3>
+                                    <label>Chọn nhóm chức năng</label>
+                                    <select class="form-control" ng-model="searchInfo.GroupMenuId">
+                                        <option value="">Tất cả</option>
+                                        <option ng-repeat="x in groupMenus" value="{{x.code}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên menu</th>
+                                                <th>Đường dẫn</th>
+                                                <th>Cấp quyền</th>
+                                                <th>Cho chỉnh sửa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in menus | filter: searchInfo">
+                                                <td>{{item.Name}}</td>
+                                                <td>{{item.Link}}</td>
+                                                <td><input type="checkbox" ng-model="item.IsActive" ng-checked="item.IsActive" ng-change="addRole($index)"/></td>
+                                                <td><input type="checkbox" ng-model="item.IsEdit" ng-checked="item.IsEdit" ng-disabled="!item.IsActive"  ng-change="addEdit($index)"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Thêm nhom -->
+    <div id="addGroupModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thêm nhóm người dùng</h4>
+                </div>
+                <form ng-submit="finishForm()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tên nhóm</label>
+                            <input type="text" required class="form-control" ng-model="group.GroupName" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Xác nhận</button>
+                    </div>
+                </form>
             </div>
 
         </div>
     </div>
+
 </div>
+
 
 
 <!-- end content-->
 @section scripts {
+    <script type="text/javascript">
+        var groupMenus = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.GroupMenu))');
+    </script>
+
     <script src="~/Scripts/hethong/nhomngdung.js"></script>
 }
 

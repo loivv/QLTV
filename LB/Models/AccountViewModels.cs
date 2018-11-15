@@ -50,6 +50,7 @@ namespace LB.Models
     {
         [Required]
         [Display(Name = "UserName")]
+        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]
@@ -84,6 +85,7 @@ namespace LB.Models
     {
         [Required]
         [DataType(DataType.Text)]
+        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]
@@ -110,6 +112,8 @@ namespace LB.Models
     {
         [Required]
         [DataType(DataType.Text)]
+        [EmailAddress]
+        [Compare("UserName", ErrorMessage = "Sai định dạng Email")]
         public string UserName { get; set; }
 
         [Required]
@@ -130,11 +134,6 @@ namespace LB.Models
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [Compare("Email", ErrorMessage = "Sai định dạng Email")]
-        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

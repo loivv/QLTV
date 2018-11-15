@@ -12,6 +12,8 @@ namespace LB.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ssofty_com_thuvienEntities : DbContext
     {
@@ -76,5 +78,49 @@ namespace LB.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+    
+        public virtual ObjectResult<GROUPUSER_GETLISTMENU_Result> GROUPUSER_GETLISTMENU(string groupId)
+        {
+            var groupIdParameter = groupId != null ?
+                new ObjectParameter("groupId", groupId) :
+                new ObjectParameter("groupId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GROUPUSER_GETLISTMENU_Result>("GROUPUSER_GETLISTMENU", groupIdParameter);
+        }
+    
+        public virtual ObjectResult<USER_CHECKACCESS_Result> USER_CHECKACCESS(string groupId, string menuCode)
+        {
+            var groupIdParameter = groupId != null ?
+                new ObjectParameter("groupId", groupId) :
+                new ObjectParameter("groupId", typeof(string));
+    
+            var menuCodeParameter = menuCode != null ?
+                new ObjectParameter("menuCode", menuCode) :
+                new ObjectParameter("menuCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USER_CHECKACCESS_Result>("USER_CHECKACCESS", groupIdParameter, menuCodeParameter);
+        }
+    
+        public virtual ObjectResult<USER_CHECKADMIN_Result> USER_CHECKADMIN(string user, string role)
+        {
+            var userParameter = user != null ?
+                new ObjectParameter("user", user) :
+                new ObjectParameter("user", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USER_CHECKADMIN_Result>("USER_CHECKADMIN", userParameter, roleParameter);
+        }
+    
+        public virtual ObjectResult<USER_GETMENU_Result> USER_GETMENU(string user)
+        {
+            var userParameter = user != null ?
+                new ObjectParameter("user", user) :
+                new ObjectParameter("user", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USER_GETMENU_Result>("USER_GETMENU", userParameter);
+        }
     }
 }

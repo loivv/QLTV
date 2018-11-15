@@ -1,22 +1,13 @@
-﻿
-@model bool
-@{
+﻿@{
     Layout = null;
 }
 
-@if (Model)
-{
-    <ul class="nav side-menu">
-        <li>
-            <a><i class="fa fa-home"></i> HỆ THỐNG <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="/nhomnguoidung/show">Nh&#243;m người d&#249;ng</a></li>
-                <li><a href="/nguoidung/show">Người d&#249;ng</a></li>
-                <li><a href="/Menu/GroupUserMenu/">Ph&#226;n quyền</a></li>
-                <li><a href="/NguoiDung/SetPassword">Tạo mật khẩu</a></li>
-            </ul>
-        </li>
-    </ul>
-
-
-}
+<ul class="nav side-menu">
+    <li>
+        <a> HỆ THỐNG <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li><a href="/nguoidung/show">Người dùng</a></li>
+            <li><a href="/nhomnguoidung/show/">Phân quyền</a></li>
+        </ul>
+    </li>
+</ul>

@@ -681,6 +681,20 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Name="GroupName" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="int" />
         </EntityType>
+        <Function Name="GROUPUSER_GETLISTMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USER_CHECKACCESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupId" Type="nvarchar" Mode="In" />
+          <Parameter Name="menuCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USER_CHECKADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="nvarchar" Mode="In" />
+          <Parameter Name="role" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USER_GETMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="ssofty_com_thuvienModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_BanQuyen" EntityType="Self.Tbl_BanQuyen" Schema="dbo" store:Type="Tables" />
@@ -1481,7 +1495,71 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
+          <FunctionImport Name="GROUPUSER_GETLISTMENU" ReturnType="Collection(ssofty_com_thuvienModel.GROUPUSER_GETLISTMENU_Result)">
+            <Parameter Name="groupId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USER_CHECKACCESS" ReturnType="Collection(ssofty_com_thuvienModel.USER_CHECKACCESS_Result)">
+            <Parameter Name="groupId" Mode="In" Type="String" />
+            <Parameter Name="menuCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USER_CHECKADMIN" ReturnType="Collection(ssofty_com_thuvienModel.USER_CHECKADMIN_Result)">
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USER_GETMENU" ReturnType="Collection(ssofty_com_thuvienModel.USER_GETMENU_Result)">
+            <Parameter Name="user" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GROUPUSER_GETLISTMENU_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Link" Nullable="true" />
+          <Property Type="String" Name="Icon" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="GroupMenuId" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="Position" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="groupUserId" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="canedit" Nullable="true" />
+          <Property Type="String" Name="groupName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USER_CHECKACCESS_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="MenuId" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="GroupUserId" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="CanEdit" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="USER_CHECKADMIN_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="EmailConfirmed" Nullable="true" />
+          <Property Type="String" Name="PasswordHash" Nullable="true" />
+          <Property Type="String" Name="SecurityStamp" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="true" />
+          <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="true" />
+          <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="LockoutEnabled" Nullable="true" />
+          <Property Type="Int32" Name="AccessFailedCount" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaTruong" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="UserGroup" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="UType" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="AddressInfo" Nullable="true" />
+          <Property Type="String" Name="Sex" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="USER_GETMENU_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Link" Nullable="true" />
+          <Property Type="String" Name="Icon" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="GroupMenuId" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="Position" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="groupName" Nullable="true" />
+          <Property Type="String" Name="GroupIcon" Nullable="true" MaxLength="128" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2156,6 +2234,72 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GROUPUSER_GETLISTMENU" FunctionName="ssofty_com_thuvienModel.Store.GROUPUSER_GETLISTMENU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.GROUPUSER_GETLISTMENU_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="groupUserId" ColumnName="groupUserId" />
+                <ScalarProperty Name="canedit" ColumnName="canedit" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USER_CHECKACCESS" FunctionName="ssofty_com_thuvienModel.Store.USER_CHECKACCESS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.USER_CHECKACCESS_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USER_CHECKADMIN" FunctionName="ssofty_com_thuvienModel.Store.USER_CHECKADMIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.USER_CHECKADMIN_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UType" ColumnName="UType" />
+                <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USER_GETMENU" FunctionName="ssofty_com_thuvienModel.Store.USER_GETMENU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.USER_GETMENU_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="groupName" ColumnName="groupName" />
+                <ScalarProperty Name="GroupIcon" ColumnName="GroupIcon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -676,6 +676,20 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
     <Property Name="GroupName" Type="nvarchar" MaxLength="200" />
     <Property Name="IsActive" Type="int" />
   </EntityType>
+  <Function Name="GROUPUSER_GETLISTMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="groupId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USER_CHECKACCESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="groupId" Type="nvarchar" Mode="In" />
+    <Parameter Name="menuCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USER_CHECKADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
+    <Parameter Name="role" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USER_GETMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="ssofty_com_thuvienModelStoreContainer">
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tbl_BanQuyen" EntityType="Self.Tbl_BanQuyen" Schema="dbo" store:Type="Tables" />

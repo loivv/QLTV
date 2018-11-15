@@ -1,21 +1,13 @@
-﻿
-@model bool
-@{
+﻿@{
     Layout = null;
 }
 
-@if (Model)
-{
-    <ul class="nav side-menu">
-        <li>
-            <a><i class="fa-user-secret"></i> SUPPER ADMIN<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="/DonVi/Show">Tạo đơn vị</a></li>
-                <li><a href="/Account/Register">Đăng ký admin</a></li>
-                <li><a href="/nhomnguoidung/show">Nh&#243;m người d&#249;ng</a></li>
-            </ul>
-        </li>
-    </ul>
-
-
-}
+<ul class="nav side-menu">
+    <li>
+        <a>SUPPER ADMIN<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li><a href="/quantri/Show">Thêm đơn vị</a></li>
+            <li><a href="/quantri/showmenu">Danh sách menu</a></li>
+        </ul>
+    </li>
+</ul>

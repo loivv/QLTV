@@ -4,8 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LB.Models;
+using LB.Filters;
+
 namespace LB.Controllers.DanhMuc
 {
+    [MyValidateAccess(code = "khoanpham", edit = 0)]
     public class KhoAnPhamController : BaseController
     {
         // GET: KhoAnPham

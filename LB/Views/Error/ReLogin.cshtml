@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "ReLogin";
+}
+
+<div class="jumbotron">
+    <h3 class="blank-slate-title">Tài khoản : @User.Identity.Name</h3>
+    <p>@ViewBag.TenTruong</p>
+    <p>>Bạn không có quyền truy cập chức năng này</p>
+    <p><a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-primary">Đăng nhập lại</a></p>
+</div>

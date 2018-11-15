@@ -32,7 +32,8 @@ namespace LB.Controllers.HeThong
                 Group = p.UserGroup,
                 IsActive = p.IsActive,
                 Phone = p.PhoneNumber,
-                Address = p.AddressInfo
+                Address = p.AddressInfo,
+                UType = p.UType
             }).ToList();
 
             return Json(new ResultInfo()
@@ -50,7 +51,6 @@ namespace LB.Controllers.HeThong
             if(find != null)
             {
                 find.HoTen = model.FullName;
-                find.Email = model.Email;
                 find.PhoneNumber = model.Phone;
                 find.AddressInfo = model.Address;
                 find.Sex = model.Sex;

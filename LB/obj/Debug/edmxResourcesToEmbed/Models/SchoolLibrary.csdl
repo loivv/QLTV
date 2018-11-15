@@ -720,5 +720,69 @@
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
+    <FunctionImport Name="GROUPUSER_GETLISTMENU" ReturnType="Collection(ssofty_com_thuvienModel.GROUPUSER_GETLISTMENU_Result)">
+      <Parameter Name="groupId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USER_CHECKACCESS" ReturnType="Collection(ssofty_com_thuvienModel.USER_CHECKACCESS_Result)">
+      <Parameter Name="groupId" Mode="In" Type="String" />
+      <Parameter Name="menuCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USER_CHECKADMIN" ReturnType="Collection(ssofty_com_thuvienModel.USER_CHECKADMIN_Result)">
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="role" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USER_GETMENU" ReturnType="Collection(ssofty_com_thuvienModel.USER_GETMENU_Result)">
+      <Parameter Name="user" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="GROUPUSER_GETLISTMENU_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="Link" Nullable="true" />
+    <Property Type="String" Name="Icon" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="GroupMenuId" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="Position" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="groupUserId" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="canedit" Nullable="true" />
+    <Property Type="String" Name="groupName" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="USER_CHECKACCESS_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="MenuId" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="GroupUserId" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="CanEdit" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="USER_CHECKADMIN_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="true" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="true" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="true" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="true" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MaTruong" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="UserGroup" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="String" Name="UType" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="AddressInfo" Nullable="true" />
+    <Property Type="String" Name="Sex" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="USER_GETMENU_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="Link" Nullable="true" />
+    <Property Type="String" Name="Icon" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="GroupMenuId" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="Position" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="groupName" Nullable="true" />
+    <Property Type="String" Name="GroupIcon" Nullable="true" MaxLength="128" />
+  </ComplexType>
 </Schema>
