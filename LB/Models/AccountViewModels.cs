@@ -49,9 +49,9 @@ namespace LB.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "UserName")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -79,6 +79,73 @@ namespace LB.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterAdminModel
+    {
+        [Required]
+        [DataType(DataType.Text)]
+        [EmailAddress]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string FullName { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string MaTruong { get; set; }
+    }
+
+    public class RegisterAccountModel
+    {
+        [Required]
+        [DataType(DataType.Text)]
+        [EmailAddress]
+        [Compare("UserName", ErrorMessage = "Sai định dạng Email")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string FullName { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Address { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Sex { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Group { get; set; }
     }
 
     public class ResetPasswordViewModel

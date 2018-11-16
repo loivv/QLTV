@@ -4,21 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ssofty_com_thuvienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ssofty_com_thuvien.dbo.__MigrationHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-            <PropertyRef Name="Model" />
-            <PropertyRef Name="ProductVersion" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="ssofty_com_thuvienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AspNetRoles">
@@ -82,6 +68,10 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Name="MaTruong" Type="nvarchar" MaxLength="20" />
           <Property Name="UserGroup" Type="nvarchar" MaxLength="50" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="UType" Type="nvarchar" MaxLength="128" />
+          <Property Name="AddressInfo" Type="nvarchar(max)" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Tbl_BanQuyen">
           <Key>
@@ -367,12 +357,12 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
         </EntityType>
         <EntityType Name="Tbl_NhomNguoiDung">
           <Key>
-            <PropertyRef Name="MaNhom" />
             <PropertyRef Name="MaTruong" />
+            <PropertyRef Name="MaNhom" />
           </Key>
+          <Property Name="MaTruong" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="MaNhom" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TenNhom" Type="nvarchar" MaxLength="50" />
-          <Property Name="MaTruong" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_PhanLoai">
           <Key>
@@ -691,508 +681,8 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Name="GroupName" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="int" />
         </EntityType>
-        <Function Name="BaoCaoChuaKiemKe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="BCBanDocbyPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Phong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="BCSachbyPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Phong" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="GROUPUSER_GETLISTMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="groupId" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="NhanAnPhamNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ngay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="NhanAnPhamThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ngay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="NhanAnPhamTuan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ngay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="SoCaBiet_P1_01" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="SoTongQuat_P1_01" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_BanQuyen_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Name" Type="nvarchar" Mode="In" />
-          <Parameter Name="LKey" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_DinhDangTaiLieu_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_DinhDangTaiLieu_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="int" Mode="In" />
-          <Parameter Name="Ma" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_DocGia_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaDocGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
-          <Parameter Name="Lop" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayDangKy" Type="datetime" Mode="In" />
-          <Parameter Name="MaNhom" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="HinhAnh" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ftp" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_DocGia_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaDocGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
-          <Parameter Name="Lop" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayDangKy" Type="datetime" Mode="In" />
-          <Parameter Name="MaNhom" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="HinhAnh" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ftp" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_LoaiVanBan_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_LoaiVanBan_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaVanBan" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_LyDoPhatThe_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_LyDoPhatThe_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="int" Mode="In" />
-          <Parameter Name="Ma" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NgonNgu_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NgonNgu_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="KyHieu" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ma" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ma" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="SDT" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="MST" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiLH" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
-          <Parameter Name="ThongBao" Type="nvarchar" Mode="In" />
-          <Parameter Name="KieuNhan" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTao" Type="date" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoNgay_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayBD" Type="date" Mode="In" />
-          <Parameter Name="SoNgay" Type="int" Mode="In" />
-          <Parameter Name="CuoiTuan" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoNgay_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayBD" Type="date" Mode="In" />
-          <Parameter Name="SoNgay" Type="int" Mode="In" />
-          <Parameter Name="CuoiTuan" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoThang_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ngay" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoThang_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ngay" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoTuan_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Thu" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_TheoTuan_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNCC" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Thu" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhaCungCap_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Ma" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ten" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="SDT" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="MST" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiLH" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
-          <Parameter Name="ThongBao" Type="nvarchar" Mode="In" />
-          <Parameter Name="KieuNhan" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTao" Type="date" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhanVien_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNV" Type="nvarchar" Mode="In" />
-          <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgaySinh" Type="nvarchar" Mode="In" />
-          <Parameter Name="GioiTinh" Type="nvarchar" Mode="In" />
-          <Parameter Name="SDT" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="Quyen" Type="nvarchar" Mode="In" />
-          <Parameter Name="MatKhau" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="KichHoat" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhanVien_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNV" Type="nvarchar" Mode="In" />
-          <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgaySinh" Type="nvarchar" Mode="In" />
-          <Parameter Name="GioiTinh" Type="nvarchar" Mode="In" />
-          <Parameter Name="SDT" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="Quyen" Type="nvarchar" Mode="In" />
-          <Parameter Name="MatKhau" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="KichHoat" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhapSach_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhap" Type="nchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="DaySach" Type="nvarchar" Mode="In" />
-          <Parameter Name="KeSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="TangSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="NhapCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhapSach_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhap" Type="nchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="DaySach" Type="nvarchar" Mode="In" />
-          <Parameter Name="KeSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="TangSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="NhapCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhomDocGia_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenNhom" Type="nvarchar" Mode="In" />
-          <Parameter Name="HanMuon" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhomDocGia_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhom" Type="int" Mode="In" />
-          <Parameter Name="TenNhom" Type="nvarchar" Mode="In" />
-          <Parameter Name="HanMuon" Type="int" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhomNguoiDung_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhom" Type="varchar" Mode="In" />
-          <Parameter Name="TenNhom" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_NhomNguoiDung_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhom" Type="varchar" Mode="In" />
-          <Parameter Name="TenNhom" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_PhanLoai_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_PhanLoai_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_PhanQuyen_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhom" Type="varchar" Mode="In" />
-          <Parameter Name="MaChucNang" Type="nvarchar" Mode="In" />
-          <Parameter Name="ChucNang" Type="nvarchar" Mode="In" />
-          <Parameter Name="ThucThi" Type="int" Mode="In" />
-          <Parameter Name="Loai" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_PhanQuyen_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaNhom" Type="varchar" Mode="In" />
-          <Parameter Name="MaChucNang" Type="nvarchar" Mode="In" />
-          <Parameter Name="ChucNang" Type="nvarchar" Mode="In" />
-          <Parameter Name="ThucThi" Type="int" Mode="In" />
-          <Parameter Name="Loai" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_PhongTruong_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaPhong" Type="nchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Sach_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
-          <Parameter Name="TacGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="NhaXuatBan" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayXuatBan" Type="nvarchar" Mode="In" />
-          <Parameter Name="GiaTien" Type="float" Mode="In" />
-          <Parameter Name="MaLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgonNgu" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="AnhBia" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ftp" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Sach_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
-          <Parameter Name="TacGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="NhaXuatBan" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayXuatBan" Type="nvarchar" Mode="In" />
-          <Parameter Name="GiaTien" Type="float" Mode="In" />
-          <Parameter Name="MaLoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgonNgu" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="AnhBia" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="Ftp" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_SoCaBiet_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="STT" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhap" Type="date" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_SoCaBiet_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="STT" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhap" Type="date" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_TacGia_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenTacGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_TacGia_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTG" Type="int" Mode="In" />
-          <Parameter Name="TenTacGia" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThanhLy_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTL" Type="nchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="NgayTL" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThanhLy_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTL" Type="nchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="NgayTL" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThanhLyChiTiet_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTL" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTao" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThanhLyChiTiet_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTL" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTao" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Thongketheokhosach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Thongketheomonloai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Thongketheonamxuatban" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_Thongketheonhande" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThongTin_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="TenTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoDienThoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="Website" Type="nvarchar" Mode="In" />
-          <Parameter Name="HieuTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="NamHoc" Type="nvarchar" Mode="In" />
-          <Parameter Name="Phong" Type="bit" Mode="In" />
-          <Parameter Name="MaSach" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_ThongTin_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="TenTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoDienThoai" Type="nvarchar" Mode="In" />
-          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="Website" Type="nvarchar" Mode="In" />
-          <Parameter Name="HieuTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="NamHoc" Type="nvarchar" Mode="In" />
-          <Parameter Name="Phong" Type="bit" Mode="In" />
-          <Parameter Name="MaSach" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_VanBan_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaVB" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="TenVB" Type="nvarchar" Mode="In" />
-          <Parameter Name="TieuDe" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiGui" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhan" Type="datetime" Mode="In" />
-          <Parameter Name="LoaiVB" Type="int" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenFile" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_VanBan_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaVB" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="TenVB" Type="nvarchar" Mode="In" />
-          <Parameter Name="TieuDe" Type="nvarchar" Mode="In" />
-          <Parameter Name="NoiGui" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayNhan" Type="datetime" Mode="In" />
-          <Parameter Name="LoaiVB" Type="int" Mode="In" />
-          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="DuongDan" Type="nvarchar" Mode="In" />
-          <Parameter Name="TenFile" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Tbl_XuatSachChiTiet_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaXuat" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="DaTra" Type="bit" Mode="In" />
-          <Parameter Name="NgayXuat" Type="datetime" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTra" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Tbl_XuatSachChiTiet_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaXuat" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="MaSach" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoCaBiet" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="DaTra" Type="bit" Mode="In" />
-          <Parameter Name="NgayXuat" Type="datetime" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayTra" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Tbl_XuatSachTong_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaXuat" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaHS" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="NgayMuon" Type="date" Mode="In" />
-          <Parameter Name="NgayTra" Type="date" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayXuat" Type="datetime" Mode="In" />
-          <Parameter Name="DaTra" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="NgayCapNhat" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="Tbl_XuatSachTong_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaXuat" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaHS" Type="nvarchar" Mode="In" />
-          <Parameter Name="SoLuong" Type="int" Mode="In" />
-          <Parameter Name="NgayMuon" Type="date" Mode="In" />
-          <Parameter Name="NgayTra" Type="date" Mode="In" />
-          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
-          <Parameter Name="NgayXuat" Type="datetime" Mode="In" />
-          <Parameter Name="DaTra" Type="nvarchar" Mode="In" />
-          <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
-          <Parameter Name="NguoiNhap" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaTruong" Type="nchar" Mode="In" />
-          <Parameter Name="NgayCapNhat" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="ThongKe_AnPham_MuonNhieuNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="ThongKe_BanDoc_MuonNhieuNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="TuNgay" Type="nvarchar" Mode="In" />
-          <Parameter Name="DenNgay" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="UpdateSoCaBietKho_MuonSach" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
-          <Parameter Name="MaXuat" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="USER_CHECKACCESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="groupId" Type="nvarchar" Mode="In" />
@@ -1253,14 +743,6 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <EntitySet Name="UMS_Menu" EntityType="Self.UMS_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UMS_MenuGroupUser" EntityType="Self.UMS_MenuGroupUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UMS_UserGroups" EntityType="Self.UMS_UserGroups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [__MigrationHistory].[MigrationId] AS [MigrationId], 
-    [__MigrationHistory].[ContextKey] AS [ContextKey], 
-    [__MigrationHistory].[Model] AS [Model], 
-    [__MigrationHistory].[ProductVersion] AS [ProductVersion]
-    FROM [dbo].[__MigrationHistory] AS [__MigrationHistory]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [AspNetRoles].[Id] AS [Id], 
@@ -1293,6 +775,30 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ssofty_com_thuvienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" />
+          <Property Name="AccessFailedCount" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaTruong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="UType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddressInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Tbl_BanQuyen">
           <Key>
             <PropertyRef Name="Name" />
@@ -1577,12 +1083,12 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
         </EntityType>
         <EntityType Name="Tbl_NhomNguoiDung">
           <Key>
-            <PropertyRef Name="MaNhom" />
             <PropertyRef Name="MaTruong" />
+            <PropertyRef Name="MaNhom" />
           </Key>
+          <Property Name="MaTruong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaNhom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TenNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaTruong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_PhanLoai">
           <Key>
@@ -1859,7 +1365,86 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
           <Property Name="HinhThuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="UMS_GroupMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="Icon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UMS_Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GroupMenuId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UMS_MenuGroupUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MenuId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GroupUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CanEdit" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UMS_UserGroups">
+          <Key>
+            <PropertyRef Name="MaTruong" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="MaTruong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ssofty_com_thuvienEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Tbl_BanQuyen" EntityType="Self.Tbl_BanQuyen" />
           <EntitySet Name="Tbl_BaoCao_SapXep" EntityType="Self.Tbl_BaoCao_SapXep" />
           <EntitySet Name="Tbl_BienMuc" EntityType="Self.Tbl_BienMuc" />
@@ -1902,516 +1487,14 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <EntitySet Name="Tbl_VanBan" EntityType="Self.Tbl_VanBan" />
           <EntitySet Name="Tbl_XuatSachChiTiet" EntityType="Self.Tbl_XuatSachChiTiet" />
           <EntitySet Name="Tbl_XuatSachTong" EntityType="Self.Tbl_XuatSachTong" />
-          <FunctionImport Name="BaoCaoChuaKiemKe" ReturnType="Collection(ssofty_com_thuvienModel.BaoCaoChuaKiemKe_Result)">
-          <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BCBanDocbyPhong" ReturnType="Collection(ssofty_com_thuvienModel.BCBanDocbyPhong_Result)">
-          <Parameter Name="Phong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BCSachbyPhong" ReturnType="Collection(ssofty_com_thuvienModel.BCSachbyPhong_Result)">
-          <Parameter Name="Phong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="NhanAnPhamNgay" ReturnType="Collection(ssofty_com_thuvienModel.NhanAnPhamNgay_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ngay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="NhanAnPhamThang" ReturnType="Collection(ssofty_com_thuvienModel.NhanAnPhamThang_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ngay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="NhanAnPhamTuan" ReturnType="Collection(ssofty_com_thuvienModel.NhanAnPhamTuan_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ngay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SoCaBiet_P1_01" ReturnType="Collection(ssofty_com_thuvienModel.SoCaBiet_P1_01_Result)">
-          <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SoTongQuat_P1_01" ReturnType="Collection(ssofty_com_thuvienModel.SoTongQuat_P1_01_Result)">
-          <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_BanQuyen_insert">
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="LKey" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_DinhDangTaiLieu_insert">
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_DinhDangTaiLieu_update">
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
-            <Parameter Name="Ma" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_DocGia_insert">
-            <Parameter Name="MaDocGia" Mode="In" Type="String" />
-            <Parameter Name="HoTen" Mode="In" Type="String" />
-            <Parameter Name="Lop" Mode="In" Type="String" />
-            <Parameter Name="NgayDangKy" Mode="In" Type="DateTime" />
-            <Parameter Name="MaNhom" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="HinhAnh" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="Ftp" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_DocGia_update">
-            <Parameter Name="MaDocGia" Mode="In" Type="String" />
-            <Parameter Name="HoTen" Mode="In" Type="String" />
-            <Parameter Name="Lop" Mode="In" Type="String" />
-            <Parameter Name="NgayDangKy" Mode="In" Type="DateTime" />
-            <Parameter Name="MaNhom" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="HinhAnh" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="Ftp" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_LoaiVanBan_insert">
-            <Parameter Name="TenLoai" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_LoaiVanBan_update">
-            <Parameter Name="TenLoai" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaVanBan" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_LyDoPhatThe_insert">
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_LyDoPhatThe_update">
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
-            <Parameter Name="Ma" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NgonNgu_insert">
-            <Parameter Name="KyHieu" Mode="In" Type="String" />
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NgonNgu_update">
-            <Parameter Name="KyHieu" Mode="In" Type="String" />
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="Ma" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_insert">
-            <Parameter Name="Ma" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="SDT" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="MST" Mode="In" Type="String" />
-            <Parameter Name="NguoiLH" Mode="In" Type="String" />
-            <Parameter Name="NoiDung" Mode="In" Type="String" />
-            <Parameter Name="ThongBao" Mode="In" Type="String" />
-            <Parameter Name="KieuNhan" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NgayTao" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoNgay_insert">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
-            <Parameter Name="SoNgay" Mode="In" Type="Int32" />
-            <Parameter Name="CuoiTuan" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoNgay_update">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
-            <Parameter Name="SoNgay" Mode="In" Type="Int32" />
-            <Parameter Name="CuoiTuan" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoThang_insert">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ngay" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoThang_update">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ngay" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoTuan_insert">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Thu" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_TheoTuan_update">
-            <Parameter Name="MaNCC" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Thu" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhaCungCap_update">
-            <Parameter Name="Ma" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="Ten" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="SDT" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="MST" Mode="In" Type="String" />
-            <Parameter Name="NguoiLH" Mode="In" Type="String" />
-            <Parameter Name="NoiDung" Mode="In" Type="String" />
-            <Parameter Name="ThongBao" Mode="In" Type="String" />
-            <Parameter Name="KieuNhan" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NgayTao" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhanVien_insert">
-            <Parameter Name="MaNV" Mode="In" Type="String" />
-            <Parameter Name="HoTen" Mode="In" Type="String" />
-            <Parameter Name="NgaySinh" Mode="In" Type="String" />
-            <Parameter Name="GioiTinh" Mode="In" Type="String" />
-            <Parameter Name="SDT" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="Quyen" Mode="In" Type="String" />
-            <Parameter Name="MatKhau" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="KichHoat" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhanVien_update">
-            <Parameter Name="MaNV" Mode="In" Type="String" />
-            <Parameter Name="HoTen" Mode="In" Type="String" />
-            <Parameter Name="NgaySinh" Mode="In" Type="String" />
-            <Parameter Name="GioiTinh" Mode="In" Type="String" />
-            <Parameter Name="SDT" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="Quyen" Mode="In" Type="String" />
-            <Parameter Name="MatKhau" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="KichHoat" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhapSach_insert">
-            <Parameter Name="MaNhap" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="DaySach" Mode="In" Type="String" />
-            <Parameter Name="KeSach" Mode="In" Type="String" />
-            <Parameter Name="TangSach" Mode="In" Type="String" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="NhapCaBiet" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhapSach_update">
-            <Parameter Name="MaNhap" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="DaySach" Mode="In" Type="String" />
-            <Parameter Name="KeSach" Mode="In" Type="String" />
-            <Parameter Name="TangSach" Mode="In" Type="String" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="NhapCaBiet" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhomDocGia_insert">
-            <Parameter Name="TenNhom" Mode="In" Type="String" />
-            <Parameter Name="HanMuon" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhomDocGia_update">
-            <Parameter Name="MaNhom" Mode="In" Type="Int32" />
-            <Parameter Name="TenNhom" Mode="In" Type="String" />
-            <Parameter Name="HanMuon" Mode="In" Type="Int32" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhomNguoiDung_insert">
-            <Parameter Name="MaNhom" Mode="In" Type="String" />
-            <Parameter Name="TenNhom" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_NhomNguoiDung_update">
-            <Parameter Name="MaNhom" Mode="In" Type="String" />
-            <Parameter Name="TenNhom" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_PhanLoai_insert">
-            <Parameter Name="MaLoai" Mode="In" Type="String" />
-            <Parameter Name="TenLoai" Mode="In" Type="String" />
-            <Parameter Name="Notes" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_PhanLoai_update">
-            <Parameter Name="MaLoai" Mode="In" Type="String" />
-            <Parameter Name="TenLoai" Mode="In" Type="String" />
-            <Parameter Name="Notes" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_PhanQuyen_insert">
-            <Parameter Name="MaNhom" Mode="In" Type="String" />
-            <Parameter Name="MaChucNang" Mode="In" Type="String" />
-            <Parameter Name="ChucNang" Mode="In" Type="String" />
-            <Parameter Name="ThucThi" Mode="In" Type="Int32" />
-            <Parameter Name="Loai" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_PhanQuyen_update">
-            <Parameter Name="MaNhom" Mode="In" Type="String" />
-            <Parameter Name="MaChucNang" Mode="In" Type="String" />
-            <Parameter Name="ChucNang" Mode="In" Type="String" />
-            <Parameter Name="ThucThi" Mode="In" Type="Int32" />
-            <Parameter Name="Loai" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_PhongTruong_insert">
-            <Parameter Name="MaPhong" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Sach_insert">
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="TenSach" Mode="In" Type="String" />
-            <Parameter Name="NoiDung" Mode="In" Type="String" />
-            <Parameter Name="TacGia" Mode="In" Type="String" />
-            <Parameter Name="NhaXuatBan" Mode="In" Type="String" />
-            <Parameter Name="NgayXuatBan" Mode="In" Type="String" />
-            <Parameter Name="GiaTien" Mode="In" Type="Double" />
-            <Parameter Name="MaLoai" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="NgonNgu" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="AnhBia" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="Ftp" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Sach_update">
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="TenSach" Mode="In" Type="String" />
-            <Parameter Name="NoiDung" Mode="In" Type="String" />
-            <Parameter Name="TacGia" Mode="In" Type="String" />
-            <Parameter Name="NhaXuatBan" Mode="In" Type="String" />
-            <Parameter Name="NgayXuatBan" Mode="In" Type="String" />
-            <Parameter Name="GiaTien" Mode="In" Type="Double" />
-            <Parameter Name="MaLoai" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="NgonNgu" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="AnhBia" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="Ftp" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_SoCaBiet_insert">
-            <Parameter Name="STT" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaNhap" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_SoCaBiet_update">
-            <Parameter Name="STT" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaNhap" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_TacGia_insert">
-            <Parameter Name="TenTacGia" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_TacGia_update">
-            <Parameter Name="MaTG" Mode="In" Type="Int32" />
-            <Parameter Name="TenTacGia" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThanhLy_insert">
-            <Parameter Name="MaTL" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayTL" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThanhLy_update">
-            <Parameter Name="MaTL" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayTL" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThanhLyChiTiet_insert">
-            <Parameter Name="MaTL" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayTao" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThanhLyChiTiet_update">
-            <Parameter Name="MaTL" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="NgayTao" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Thongketheokhosach" ReturnType="Collection(ssofty_com_thuvienModel.Tbl_Thongketheokhosach_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Thongketheomonloai" ReturnType="Collection(ssofty_com_thuvienModel.Tbl_Thongketheomonloai_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Thongketheonamxuatban" ReturnType="Collection(ssofty_com_thuvienModel.Tbl_Thongketheonamxuatban_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_Thongketheonhande" ReturnType="Collection(ssofty_com_thuvienModel.Tbl_Thongketheonhande_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThongTin_insert">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TenTruong" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="SoDienThoai" Mode="In" Type="String" />
-            <Parameter Name="Fax" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="Website" Mode="In" Type="String" />
-            <Parameter Name="HieuTruong" Mode="In" Type="String" />
-            <Parameter Name="NamHoc" Mode="In" Type="String" />
-            <Parameter Name="Phong" Mode="In" Type="Boolean" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_ThongTin_update">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TenTruong" Mode="In" Type="String" />
-            <Parameter Name="DiaChi" Mode="In" Type="String" />
-            <Parameter Name="SoDienThoai" Mode="In" Type="String" />
-            <Parameter Name="Fax" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="Website" Mode="In" Type="String" />
-            <Parameter Name="HieuTruong" Mode="In" Type="String" />
-            <Parameter Name="NamHoc" Mode="In" Type="String" />
-            <Parameter Name="Phong" Mode="In" Type="Boolean" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_VanBan_insert">
-            <Parameter Name="MaVB" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TenVB" Mode="In" Type="String" />
-            <Parameter Name="TieuDe" Mode="In" Type="String" />
-            <Parameter Name="NoiGui" Mode="In" Type="String" />
-            <Parameter Name="NgayNhan" Mode="In" Type="DateTime" />
-            <Parameter Name="LoaiVB" Mode="In" Type="Int32" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="TenFile" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_VanBan_update">
-            <Parameter Name="MaVB" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TenVB" Mode="In" Type="String" />
-            <Parameter Name="TieuDe" Mode="In" Type="String" />
-            <Parameter Name="NoiGui" Mode="In" Type="String" />
-            <Parameter Name="NgayNhan" Mode="In" Type="DateTime" />
-            <Parameter Name="LoaiVB" Mode="In" Type="Int32" />
-            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="DuongDan" Mode="In" Type="String" />
-            <Parameter Name="TenFile" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_XuatSachChiTiet_insert">
-            <Parameter Name="MaXuat" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="DaTra" Mode="In" Type="Boolean" />
-            <Parameter Name="NgayXuat" Mode="In" Type="DateTime" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NgayTra" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_XuatSachChiTiet_update">
-            <Parameter Name="MaXuat" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaSach" Mode="In" Type="String" />
-            <Parameter Name="SoCaBiet" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="DaTra" Mode="In" Type="Boolean" />
-            <Parameter Name="NgayXuat" Mode="In" Type="DateTime" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NgayTra" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_XuatSachTong_insert">
-            <Parameter Name="MaXuat" Mode="In" Type="String" />
-            <Parameter Name="MaHS" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="NgayMuon" Mode="In" Type="DateTime" />
-            <Parameter Name="NgayTra" Mode="In" Type="DateTime" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="NgayXuat" Mode="In" Type="DateTime" />
-            <Parameter Name="DaTra" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayCapNhat" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Tbl_XuatSachTong_update">
-            <Parameter Name="MaXuat" Mode="In" Type="String" />
-            <Parameter Name="MaHS" Mode="In" Type="String" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="NgayMuon" Mode="In" Type="DateTime" />
-            <Parameter Name="NgayTra" Mode="In" Type="DateTime" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="NgayXuat" Mode="In" Type="DateTime" />
-            <Parameter Name="DaTra" Mode="In" Type="String" />
-            <Parameter Name="TrangThai" Mode="In" Type="String" />
-            <Parameter Name="NguoiNhap" Mode="In" Type="String" />
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="NgayCapNhat" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="ThongKe_AnPham_MuonNhieuNhat" ReturnType="Collection(ssofty_com_thuvienModel.ThongKe_AnPham_MuonNhieuNhat_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ThongKe_BanDoc_MuonNhieuNhat" ReturnType="Collection(ssofty_com_thuvienModel.ThongKe_BanDoc_MuonNhieuNhat_Result)">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="TuNgay" Mode="In" Type="String" />
-            <Parameter Name="DenNgay" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="UpdateSoCaBietKho_MuonSach">
-            <Parameter Name="MaTruong" Mode="In" Type="String" />
-            <Parameter Name="MaXuat" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="AspNetUsers" EntityType="ssofty_com_thuvienModel.AspNetUser" />
-          <EntitySet Name="UMS_GroupMenu" EntityType="ssofty_com_thuvienModel.UMS_GroupMenu" />
-          <EntitySet Name="UMS_Menu" EntityType="ssofty_com_thuvienModel.UMS_Menu" />
-          <EntitySet Name="UMS_MenuGroupUser" EntityType="ssofty_com_thuvienModel.UMS_MenuGroupUser" />
-          <EntitySet Name="UMS_UserGroups" EntityType="ssofty_com_thuvienModel.UMS_UserGroups" />
-          <EntitySet Name="C__MigrationHistory" EntityType="ssofty_com_thuvienModel.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="ssofty_com_thuvienModel.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="ssofty_com_thuvienModel.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="ssofty_com_thuvienModel.AspNetUserLogin" />
-          <EntitySet Name="AspNetUserRoles" EntityType="ssofty_com_thuvienModel.AspNetUserRole" />
+          <EntitySet Name="UMS_GroupMenu" EntityType="Self.UMS_GroupMenu" />
+          <EntitySet Name="UMS_Menu" EntityType="Self.UMS_Menu" />
+          <EntitySet Name="UMS_MenuGroupUser" EntityType="Self.UMS_MenuGroupUser" />
+          <EntitySet Name="UMS_UserGroups" EntityType="Self.UMS_UserGroups" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
           <FunctionImport Name="GROUPUSER_GETLISTMENU" ReturnType="Collection(ssofty_com_thuvienModel.GROUPUSER_GETLISTMENU_Result)">
             <Parameter Name="groupId" Mode="In" Type="String" />
           </FunctionImport>
@@ -2427,240 +1510,6 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
             <Parameter Name="user" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="BaoCaoChuaKiemKe_Result">
-          <Property Type="String" Name="MaSach" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="TenSach" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="SoCaBiet" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="TacGia" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TenKho" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="NamXuatBan" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="NhaXuatBan" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="NgayTL" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="BCBanDocbyPhong_Result">
-          <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="BanDoc" Nullable="true" />
-          <Property Type="Int32" Name="TongMuon" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="BCSachbyPhong_Result">
-          <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="TongSach" Nullable="true" />
-          <Property Type="Int32" Name="TongMuon" Nullable="true" />
-          <Property Type="Int32" Name="TongNo" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="NhanAnPhamNgay_Result">
-          <Property Type="String" Name="Ten" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="DiaChi" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="NguoiLH" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="SDT" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="NhanAnPhamThang_Result">
-          <Property Type="String" Name="Ten" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="DiaChi" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="NguoiLH" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="SDT" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="NhanAnPhamTuan_Result">
-          <Property Type="String" Name="Ten" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="DiaChi" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="NguoiLH" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="SDT" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="SoCaBiet_P1_01_Result">
-          <Property Type="DateTime" Name="NgayVaoSo" Nullable="true" />
-          <Property Type="String" Name="STT" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="TGTS" Nullable="true" MaxLength="205" />
-          <Property Type="String" Name="NXB" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="NoiXuatBan" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="NamXuatBan" Nullable="true" MaxLength="50" />
-          <Property Type="Double" Name="DonGia" Nullable="true" />
-          <Property Type="Int32" Name="Nguon" Nullable="true" />
-          <Property Type="String" Name="MonLoai" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SoVaoSoTQ" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="SoBienXB" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="NamKK" Nullable="true" MaxLength="4" />
-        </ComplexType>
-        <ComplexType Name="SoTongQuat_P1_01_Result">
-          <Property Type="Int32" Name="Nam" Nullable="true" />
-          <Property Type="DateTime" Name="NgayVaoSo" Nullable="true" />
-          <Property Type="String" Name="Nguon" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ChungTu" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Sach" Nullable="true" />
-          <Property Type="Int32" Name="Bao" Nullable="true" />
-          <Property Type="Int32" Name="HinhAnh" Nullable="true" />
-          <Property Type="Int32" Name="Khac" Nullable="true" />
-          <Property Type="Double" Name="TriGia" Nullable="true" />
-          <Property Type="Int32" Name="GiaoKhoa" Nullable="true" />
-          <Property Type="Int32" Name="ThamKhao" Nullable="true" />
-          <Property Type="Int32" Name="NghiepVu" Nullable="true" />
-          <Property Type="Int32" Name="ThieuNhi" Nullable="true" />
-          <Property Type="Int32" Name="SachKhac" Nullable="true" />
-          <Property Type="Int32" Name="Anh" Nullable="true" />
-          <Property Type="Int32" Name="Phap" Nullable="true" />
-          <Property Type="Int32" Name="NgonNguKhac" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Tbl_Thongketheokhosach_Result">
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="SanSang" Nullable="true" />
-          <Property Type="Int32" Name="DangMuon" Nullable="true" />
-          <Property Type="Int32" Name="ThanhLy" Nullable="true" />
-          <Property Type="Int32" Name="Mat" Nullable="true" />
-          <Property Type="Int32" Name="Khac" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Tbl_Thongketheomonloai_Result">
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="SanSang" Nullable="true" />
-          <Property Type="Int32" Name="DangMuon" Nullable="true" />
-          <Property Type="Int32" Name="ThanhLy" Nullable="true" />
-          <Property Type="Int32" Name="Mat" Nullable="true" />
-          <Property Type="Int32" Name="Khac" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Tbl_Thongketheonamxuatban_Result">
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="SanSang" Nullable="true" />
-          <Property Type="Int32" Name="DangMuon" Nullable="true" />
-          <Property Type="Int32" Name="ThanhLy" Nullable="true" />
-          <Property Type="Int32" Name="Mat" Nullable="true" />
-          <Property Type="Int32" Name="Khac" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Tbl_Thongketheonhande_Result">
-          <Property Type="String" Name="NoiDung" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="TongSo" Nullable="true" />
-          <Property Type="Int32" Name="SanSang" Nullable="true" />
-          <Property Type="Int32" Name="DangMuon" Nullable="true" />
-          <Property Type="Int32" Name="ThanhLy" Nullable="true" />
-          <Property Type="Int32" Name="Mat" Nullable="true" />
-          <Property Type="Int32" Name="Khac" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="ThongKe_AnPham_MuonNhieuNhat_Result">
-          <Property Type="String" Name="NhanDe" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TacGia" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="NamXuatBan" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="NhaXuatBan" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="SoLanMuon" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="ThongKe_BanDoc_MuonNhieuNhat_Result">
-          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="SoThe" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Nhom" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="SoLanMuon" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" />
-          <Property Name="AccessFailedCount" Type="Int32" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaTruong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="UserGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UMS_GroupMenu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="Int32" />
-          <Property Name="Icon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Int32" />
-          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UMS_Menu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="GroupMenuId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="Int32" />
-          <Property Name="Code" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UMS_MenuGroupUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="MenuId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="GroupUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CanEdit" Type="Int32" />
-        </EntityType>
-        <EntityType Name="UMS_UserGroups">
-          <Key>
-            <PropertyRef Name="MaTruong" />
-            <PropertyRef Name="GroupID" />
-          </Key>
-          <Property Name="MaTruong" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="GroupID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Int32" />
-        </EntityType>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-            <PropertyRef Name="Model" />
-            <PropertyRef Name="ProductVersion" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="Name" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogin">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AspNetUserRole">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
         <ComplexType Name="GROUPUSER_GETLISTMENU_Result">
           <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
           <Property Type="String" Name="Name" Nullable="true" />
@@ -2695,6 +1544,10 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Type="String" Name="MaTruong" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="UserGroup" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="HoTen" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="UType" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="AddressInfo" Nullable="true" />
+          <Property Type="String" Name="Sex" Nullable="true" MaxLength="128" />
         </ComplexType>
         <ComplexType Name="USER_GETMENU_Result">
           <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
@@ -2713,6 +1566,31 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ssofty_com_thuvienModelStoreContainer" CdmEntityContainer="ssofty_com_thuvienEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UType" ColumnName="UType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tbl_BanQuyen">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_BanQuyen">
               <MappingFragment StoreEntitySet="Tbl_BanQuyen">
@@ -2997,9 +1875,9 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <EntitySetMapping Name="Tbl_NhomNguoiDung">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_NhomNguoiDung">
               <MappingFragment StoreEntitySet="Tbl_NhomNguoiDung">
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
                 <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
                 <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
-                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3276,345 +2154,83 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="BaoCaoChuaKiemKe" FunctionName="ssofty_com_thuvienModel.Store.BaoCaoChuaKiemKe">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BaoCaoChuaKiemKe_Result">
-                <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
-                <ScalarProperty Name="SoCaBiet" ColumnName="SoCaBiet" />
-                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
-                <ScalarProperty Name="TenKho" ColumnName="TenKho" />
-                <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-                <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
-                <ScalarProperty Name="NgayTL" ColumnName="NgayTL" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BCBanDocbyPhong" FunctionName="ssofty_com_thuvienModel.Store.BCBanDocbyPhong">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BCBanDocbyPhong_Result">
-                <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
-                <ScalarProperty Name="BanDoc" ColumnName="BanDoc" />
-                <ScalarProperty Name="TongMuon" ColumnName="TongMuon" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="BCSachbyPhong" FunctionName="ssofty_com_thuvienModel.Store.BCSachbyPhong">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BCSachbyPhong_Result">
-                <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
-                <ScalarProperty Name="TongSach" ColumnName="TongSach" />
-                <ScalarProperty Name="TongMuon" ColumnName="TongMuon" />
-                <ScalarProperty Name="TongNo" ColumnName="TongNo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NhanAnPhamNgay" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamNgay">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamNgay_Result">
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NhanAnPhamThang" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamThang">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamThang_Result">
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NhanAnPhamTuan" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamTuan">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamTuan_Result">
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SoCaBiet_P1_01" FunctionName="ssofty_com_thuvienModel.Store.SoCaBiet_P1_01">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.SoCaBiet_P1_01_Result">
-                <ScalarProperty Name="NgayVaoSo" ColumnName="NgayVaoSo" />
-                <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="TGTS" ColumnName="TGTS" />
-                <ScalarProperty Name="NXB" ColumnName="NXB" />
-                <ScalarProperty Name="NoiXuatBan" ColumnName="NoiXuatBan" />
-                <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="Nguon" ColumnName="Nguon" />
-                <ScalarProperty Name="MonLoai" ColumnName="MonLoai" />
-                <ScalarProperty Name="SoVaoSoTQ" ColumnName="SoVaoSoTQ" />
-                <ScalarProperty Name="SoBienXB" ColumnName="SoBienXB" />
-                <ScalarProperty Name="NamKK" ColumnName="NamKK" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SoTongQuat_P1_01" FunctionName="ssofty_com_thuvienModel.Store.SoTongQuat_P1_01">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.SoTongQuat_P1_01_Result">
-                <ScalarProperty Name="Nam" ColumnName="Nam" />
-                <ScalarProperty Name="NgayVaoSo" ColumnName="NgayVaoSo" />
-                <ScalarProperty Name="Nguon" ColumnName="Nguon" />
-                <ScalarProperty Name="ChungTu" ColumnName="ChungTu" />
-                <ScalarProperty Name="Sach" ColumnName="Sach" />
-                <ScalarProperty Name="Bao" ColumnName="Bao" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-                <ScalarProperty Name="TriGia" ColumnName="TriGia" />
-                <ScalarProperty Name="GiaoKhoa" ColumnName="GiaoKhoa" />
-                <ScalarProperty Name="ThamKhao" ColumnName="ThamKhao" />
-                <ScalarProperty Name="NghiepVu" ColumnName="NghiepVu" />
-                <ScalarProperty Name="ThieuNhi" ColumnName="ThieuNhi" />
-                <ScalarProperty Name="SachKhac" ColumnName="SachKhac" />
-                <ScalarProperty Name="Anh" ColumnName="Anh" />
-                <ScalarProperty Name="Phap" ColumnName="Phap" />
-                <ScalarProperty Name="NgonNguKhac" ColumnName="NgonNguKhac" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Tbl_BanQuyen_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_BanQuyen_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_DinhDangTaiLieu_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DinhDangTaiLieu_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_DinhDangTaiLieu_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DinhDangTaiLieu_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_DocGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DocGia_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_DocGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DocGia_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_LoaiVanBan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LoaiVanBan_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_LoaiVanBan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LoaiVanBan_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_LyDoPhatThe_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LyDoPhatThe_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_LyDoPhatThe_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LyDoPhatThe_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NgonNgu_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NgonNgu_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NgonNgu_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NgonNgu_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoNgay_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoNgay_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoNgay_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoNgay_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoThang_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoThang_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoThang_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoThang_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoTuan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoTuan_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoTuan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoTuan_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhanVien_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhanVien_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhanVien_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhanVien_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhapSach_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhapSach_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhapSach_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhapSach_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhomDocGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomDocGia_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhomDocGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomDocGia_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhomNguoiDung_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomNguoiDung_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_NhomNguoiDung_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomNguoiDung_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_PhanLoai_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanLoai_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_PhanLoai_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanLoai_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_PhanQuyen_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanQuyen_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_PhanQuyen_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanQuyen_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_PhongTruong_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhongTruong_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_Sach_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Sach_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_Sach_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Sach_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_SoCaBiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_SoCaBiet_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_SoCaBiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_SoCaBiet_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_TacGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_TacGia_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_TacGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_TacGia_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_ThanhLy_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLy_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_ThanhLy_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLy_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_ThanhLyChiTiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLyChiTiet_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_ThanhLyChiTiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLyChiTiet_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_Thongketheokhosach" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheokhosach">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheokhosach_Result">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-                <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-                <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-                <ScalarProperty Name="Mat" ColumnName="Mat" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Tbl_Thongketheomonloai" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheomonloai">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheomonloai_Result">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-                <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-                <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-                <ScalarProperty Name="Mat" ColumnName="Mat" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Tbl_Thongketheonamxuatban" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheonamxuatban">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheonamxuatban_Result">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-                <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-                <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-                <ScalarProperty Name="Mat" ColumnName="Mat" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Tbl_Thongketheonhande" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheonhande">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheonhande_Result">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-                <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-                <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-                <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-                <ScalarProperty Name="Mat" ColumnName="Mat" />
-                <ScalarProperty Name="Khac" ColumnName="Khac" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Tbl_ThongTin_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThongTin_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_ThongTin_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThongTin_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_VanBan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_VanBan_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_VanBan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_VanBan_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_XuatSachChiTiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachChiTiet_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_XuatSachChiTiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachChiTiet_update" />
-          <FunctionImportMapping FunctionImportName="Tbl_XuatSachTong_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachTong_insert" />
-          <FunctionImportMapping FunctionImportName="Tbl_XuatSachTong_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachTong_update" />
-          <FunctionImportMapping FunctionImportName="ThongKe_AnPham_MuonNhieuNhat" FunctionName="ssofty_com_thuvienModel.Store.ThongKe_AnPham_MuonNhieuNhat">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.ThongKe_AnPham_MuonNhieuNhat_Result">
-                <ScalarProperty Name="NhanDe" ColumnName="NhanDe" />
-                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
-                <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-                <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
-                <ScalarProperty Name="SoLanMuon" ColumnName="SoLanMuon" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ThongKe_BanDoc_MuonNhieuNhat" FunctionName="ssofty_com_thuvienModel.Store.ThongKe_BanDoc_MuonNhieuNhat">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.ThongKe_BanDoc_MuonNhieuNhat_Result">
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="SoThe" ColumnName="SoThe" />
-                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
-                <ScalarProperty Name="SoLanMuon" ColumnName="SoLanMuon" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UpdateSoCaBietKho_MuonSach" FunctionName="ssofty_com_thuvienModel.Store.UpdateSoCaBietKho_MuonSach" />
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
-                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UMS_GroupMenu">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_GroupMenu">
               <MappingFragment StoreEntitySet="UMS_GroupMenu">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UMS_Menu">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_Menu">
               <MappingFragment StoreEntitySet="UMS_Menu">
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UMS_MenuGroupUser">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_MenuGroupUser">
               <MappingFragment StoreEntitySet="UMS_MenuGroupUser">
-                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
-                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
-                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UMS_UserGroups">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_UserGroups">
               <MappingFragment StoreEntitySet="UMS_UserGroups">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="ssofty_com_thuvienModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserRoles">
             <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserRole">
               <MappingFragment StoreEntitySet="AspNetUserRoles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3662,6 +2278,10 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
                 <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
                 <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UType" ColumnName="UType" />
+                <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

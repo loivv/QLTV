@@ -6,91 +6,81 @@ using System.Web.Mvc;
 using LB.Models;
 namespace LB.Controllers.HeThong
 {
+    [Authorize(Roles = "admin")]
     public class NguoiDungController : BaseController
     {
         // GET: NguoiDung
         public ActionResult Show()
         {
-            ViewBag.AllNhom = db.Tbl_NhomNguoiDung.Where(p => p.MaTruong == MaTruong).ToList();
+            ViewBag.Groups = db.UMS_UserGroups.Where(p => p.MaTruong == MaTruong && p.IsActive == 1).Select(p => new
+            {
+                code = p.GroupID,
+                name = p.GroupName
+            }).ToList();
+
             return View();
         }
+
         [HttpGet]
-        public ActionResult getNhanVien()
+        public ActionResult GetAll()
         {
+            var data = db.AspNetUsers.Where(p => p.MaTruong == MaTruong).Select(p => new
+            {
+                UserName = p.UserName,
+                Email = p.Email,
+                FullName = p.HoTen,
+                Group = p.UserGroup,
+                IsActive = p.IsActive,
+                Phone = p.PhoneNumber,
+                Address = p.AddressInfo,
+                UType = p.UType
+            }).ToList();
 
-            var query = from t in db.Tbl_NhanVien
-                        orderby t.HoTen
-                        where t.MaTruong == MaTruong
-                        select t;
-
-            ResultInfo result = new ResultInfo()
+            return Json(new ResultInfo()
             {
                 error = 0,
-                msg = "",
-                data = query
-            };
-
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+                data = data
+            }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public ActionResult create(Tbl_NhanVien nv)
+        public ActionResult Modify(RegisterAccountModel model)
         {
-            // if (String.IsNullOrEmpty(ph.MaLoai))
-            //     return Json(new ResultInfo() { error = 1, msg = "Missing info" }, JsonRequestBehavior.AllowGet);
+            var find = db.AspNetUsers.Where(p => p.UserName == model.UserName).FirstOrDefault();
 
-            var check = db.Tbl_NhanVien.Where(p => p.MaTruong == MaTruong && p.MaNV == nv.MaNV).FirstOrDefault();
+            if(find != null)
+            {
+                find.HoTen = model.FullName;
+                find.PhoneNumber = model.Phone;
+                find.AddressInfo = model.Address;
+                find.Sex = model.Sex;
+                find.UserGroup = model.Group;
 
-            if (check != null)
-                return Json(new ResultInfo() { error = 1, msg = "Đã tồn tại" }, JsonRequestBehavior.AllowGet);
+                db.Entry(find).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
 
-            nv.MaTruong = MaTruong;
-            db.Tbl_NhanVien.Add(nv);
-
-            db.SaveChanges();
-            return Json(new ResultInfo() { error = 0, msg = "", data = nv }, JsonRequestBehavior.AllowGet);
-
+            return Json(new ResultInfo()
+            {
+                error = 0
+            }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public ActionResult edit(Tbl_NhanVien nv)
+        public ActionResult ActiveAccounts(string UserName, bool IsActive)
         {
-            // if (String.IsNullOrEmpty(ph.MaLoai))
-            //     return Json(new ResultInfo() { error = 1, msg = "Missing info" }, JsonRequestBehavior.AllowGet);
+            var find = db.AspNetUsers.Where(p => p.UserName == UserName && p.MaTruong == MaTruong).FirstOrDefault();
+            if (find != null && find.UType == "USER")
+            {
+                find.IsActive = IsActive;
+                db.Entry(find).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
 
-            var check = db.Tbl_NhanVien.Where(p => p.MaTruong == MaTruong && p.MaNV == nv.MaNV).FirstOrDefault();
-
-            if (check == null)
-                return Json(new ResultInfo() { error = 1, msg = "Không tìm thấy thông tin" }, JsonRequestBehavior.AllowGet);
-
-            check.GioiTinh = nv.GioiTinh;
-            check.HoTen = nv.HoTen;
-            check.KichHoat = nv.KichHoat;
-            check.MatKhau = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(nv.MatKhau, "SHA1");
-            check.NgaySinh = nv.NgaySinh;
-            check.Quyen = nv.Quyen;
-            check.SDT = nv.SDT;
-            db.Entry(check).State = System.Data.Entity.EntityState.Modified;
-
-            db.SaveChanges();
-            return Json(new ResultInfo() { error = 0, msg = "", data = check }, JsonRequestBehavior.AllowGet);
-
-        }
-        [HttpPost]
-        public ActionResult delete(string manv)
-        {
-            if (String.IsNullOrEmpty(manv))
-                return Json(new ResultInfo() { error = 1, msg = "Missing info" }, JsonRequestBehavior.AllowGet);
-
-            var check = db.Tbl_NhanVien.Where(p => p.MaTruong == MaTruong && p.MaNV == manv).FirstOrDefault();
-
-            if (check == null)
-                return Json(new ResultInfo() { error = 1, msg = "Không tìm thấy thông tin" }, JsonRequestBehavior.AllowGet);
-
-            db.Entry(check).State = System.Data.Entity.EntityState.Deleted;
-            db.SaveChanges();
-
-
-            return Json(new ResultInfo() { error = 0, msg = "", data = check }, JsonRequestBehavior.AllowGet);
+            return Json(new ResultInfo()
+            {
+                error = 0
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

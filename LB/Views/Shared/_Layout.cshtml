@@ -12,11 +12,12 @@
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
-    <link href="~/Content/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link href="~/Content/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
     <!-- Select2 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
     <link href="~/Content/build/css/custom.min.css" rel="stylesheet">
 
@@ -81,8 +82,8 @@
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="/" class="site_title"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp; <span>EPM QA</span></a>
+                    <div class="navbar nav_title">
+                        <a href="/" class="site_title"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp; <span>THƯ VIỆN</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -90,28 +91,11 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             @if (Request.IsAuthenticated)
-                            {
-                                @Html.Action("Menus", "Base")
-                                @Html.Action("MenuAdmin", "Home")
-                                @Html.Action("MenuSAdmin", "Home")
+                            { 
+                                @Html.Action("AdminMenu", "Menu")
+                                @Html.Action("Menus", "Menu")
                             }
-
                         </div>
-                    </div>
-                    <!-- /sidebar menu -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings" aria-describedby="tooltip861484">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="" data-original-title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout" href="javascript:document.getElementById('logoutForm').submit()">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -126,8 +110,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    @User.Identity.Name
-                                    <span class=" fa fa-angle-down"></span>
+                                    <strong>@User.Identity.Name</strong>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li>
@@ -135,10 +118,9 @@
                                             Đổi mật khẩu
                                         </a>
                                     </li>
-                                    <li><a href="javascript:;">Help</a></li>
                                     <li>
                                         <a href="javascript:document.getElementById('logoutForm').submit()">
-                                            <span>Logout</span>
+                                            <span>Thoát</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -152,17 +134,6 @@
             <div class="right_col" role="main">
                 <div class="clearfix"></div>
                 <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                            @if (Request.IsAuthenticated)
-                            {
-                                <h4>@Html.Action("ShowInfoTruong", "Home")</h4>
-                            }
-
-                        </div>
-                    </div>
-
-                    <div class="clearfix"></div>
                     @RenderBody()
                 </div>
             </div>
@@ -190,7 +161,7 @@
     <!-- jQuery -->
     <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="~/Content/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
@@ -204,6 +175,10 @@
     <script src="~/Scripts/mask.js"></script>
     <script src="~/Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
     <script src="~/Scripts/uploader.js"></script>
+
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/Scripts/angular-select2.js"></script>
 
     <script src="~/Scripts/myscripts.js"></script>
 

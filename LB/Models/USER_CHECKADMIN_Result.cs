@@ -28,5 +28,9 @@ namespace LB.Models
         public string MaTruong { get; set; }
         public string UserGroup { get; set; }
         public string HoTen { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string UType { get; set; }
+        public string AddressInfo { get; set; }
+        public string Sex { get; set; }
     }
 }

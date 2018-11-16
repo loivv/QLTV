@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -172,8 +173,12 @@
     <Compile Include="Controllers\DanhMuc\NhaXuatBanController.cs" />
     <Compile Include="Controllers\DanhMuc\PhanLoaiController.cs" />
     <Compile Include="Controllers\DanhMuc\TacGiaController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\DanhMuc\TinhChatNguonNhapController.cs" />
     <Compile Include="Controllers\DanhMuc\TinhTrangAnPhamController.cs" />
+=======
+    <Compile Include="Controllers\ErrorController.cs" />
+>>>>>>> 7ab7bbd717f2e3145075a16286618a67caa373c9
     <Compile Include="Controllers\HeThong\MonHocController.cs" />
     <Compile Include="Controllers\HeThong\NamHocController.cs" />
     <Compile Include="Controllers\HeThong\NgonNguController.cs" />
@@ -182,6 +187,9 @@
     <Compile Include="Controllers\HeThong\ThongTinChungController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\QuanTri\QuanTriController.cs" />
+    <Compile Include="Filters\MyValidateAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,33 +209,12 @@
     <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaoCaoChuaKiemKe_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BCBanDocbyPhong_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BCSachbyPhong_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GROUPUSER_GETLISTMENU_Result.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityCommon.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NhanAnPhamNgay_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhanAnPhamThang_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhanAnPhamTuan_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SchoolLibrary.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,12 +229,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SchoolLibrary.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SoCaBiet_P1_01_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SoTongQuat_P1_01_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_BanQuyen.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
@@ -351,18 +332,6 @@
     <Compile Include="Models\Tbl_ThanhLyChiTiet.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tbl_Thongketheokhosach_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tbl_Thongketheomonloai_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tbl_Thongketheonamxuatban_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Tbl_Thongketheonhande_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Tbl_ThongTin.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
@@ -385,12 +354,6 @@
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_XuatSachTong.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ThongKe_AnPham_MuonNhieuNhat_Result.cs">
-      <DependentUpon>SchoolLibrary.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ThongKe_BanDoc_MuonNhieuNhat_Result.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UMS_GroupMenu.cs">
@@ -669,6 +632,17 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\SchoolLibrary.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolLibrary.edmx</DependentUpon>
+      <LastGenOutput>SchoolLibrary.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SchoolLibrary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolLibrary.edmx</DependentUpon>
+      <LastGenOutput>SchoolLibrary.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\angular-select2.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\vendors\bootstrap\.bower.json" />
@@ -895,20 +869,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SchoolLibrary.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\SchoolLibrary.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SchoolLibrary.edmx</DependentUpon>
-      <LastGenOutput>SchoolLibrary.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\SchoolLibrary.edmx.diagram">
       <DependentUpon>SchoolLibrary.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\SchoolLibrary.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SchoolLibrary.edmx</DependentUpon>
-      <LastGenOutput>SchoolLibrary.cs</LastGenOutput>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\hethong\nguoidung.js" />
+    <Content Include="Scripts\hethong\nhomngdung.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -916,9 +882,17 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mask.js" />
+    <Content Include="Scripts\mask.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mydirective.js" />
+    <Content Include="Scripts\myscript.keypress.js" />
+    <Content Include="Scripts\myscripts.js" />
+    <Content Include="Scripts\quantri\quantri.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="Scripts\uploader.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -968,6 +942,7 @@
     <Content Include="Views\NgonNgu\Show.cshtml" />
     <Content Include="Views\TacGia\Show.cshtml" />
     <Content Include="Views\NhaXuatBan\Show.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\PhanLoai\Show.cshtml" />
     <Content Include="Views\DinhDangTaiLieu\Show.cshtml" />
     <Content Include="Views\TinhTrangAnPham\Show.cshtml" />
@@ -975,10 +950,17 @@
     <Content Include="Views\LyDoPhatThe\Show.cshtml" />
     <Content Include="Views\NhomBanDoc\Show.cshtml" />
     <Content Include="Views\BanDoc\Show.cshtml" />
+=======
+    <Content Include="Views\QuanTri\Show.cshtml" />
+    <Content Include="Views\Error\ReLogin.cshtml" />
+    <Content Include="Views\QuanTri\ShowMenu.cshtml" />
+    <Content Include="Views\Shared\_NoneView.cshtml" />
+>>>>>>> 7ab7bbd717f2e3145075a16286618a67caa373c9
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

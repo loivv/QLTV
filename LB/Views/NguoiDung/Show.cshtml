@@ -2,358 +2,236 @@
     ViewBag.Title = "Thông tin người dùng";
 }
 
-<div class="row" ng-app="myApp" ng-controller="myCtrl">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Danh sách người dùng&nbsp;&nbsp;&nbsp;<a href="#" ng-click="addNew()"><i my-tool-tip="Thêm mới" class="fa fa-plus"></i></a></h2>
-                <div class="clearfix"></div>
-            </div>
-            <!-- end x_title-->
-            <div class="x_content">
-                <div class="row">
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Quản lý người dùng</h2>
+                    <div class="nav navbar-right">
+                        <button type="button" class="btn btn-primary" ng-click="createAccount()">Thêm người dùng</button>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
+                <!-- end x_title-->
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Tìm theo tên</label>
+                                <input type="text" ng-model="searchInfo.FullName" class="form-control" />
+                            </div>
+                        </div>
 
-                <!-- table data-->
-                <div class="table-responsive">
-                    <table class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th>STT</th>
-                                <th>Mã NV</th>
-                                <th>Họ tên</th>
-                                <th>Nhóm</th>
-                                <th>Giới tính</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
-                                <th>KH</th>
-                                <th>#</th>
-                                <th>#</th>
-                            </tr>
-                        </thead>
+                        <div class="col-sm-12">
+                            <!-- table data-->
+                            <div class="table-responsive">
+                                <table class="table table-striped jambo_table bulk_action">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th>STT</th>
+                                            <th>Mã NV</th>
+                                            <th>Họ tên</th>
+                                            <th>Nhóm</th>
+                                            <th>Giới tính</th>
+                                            <th>SĐT</th>
+                                            <th>Địa chỉ</th>
+                                            <th>KH</th>
+                                        </tr>
+                                    </thead>
 
-                        <tbody>
-                            <tr ng-repeat="item in allDanhMuc">
-                                <td>{{$index + 1}}</td>
-                                <td>{{item.MaNV}}</td>
-                                <td>{{item.HoTen}}</td>
-                                <td>{{item.Quyen}}</td>
-                                <td>{{item.GioiTinh}}</td>
-                                <td>{{item.Email}}</td>
-                                <td>{{item.SDT}}</td>
-                                <td>{{item.KH}}</td>
-                                <td><a href="#" ng-click="edit($index)">Xem</a></td>
-                                <td><a href="#" ng-click="sendDelete($index)">Xóa</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    <tbody>
+                                        <tr ng-repeat="item in accounts| filter : searchInfo">
+                                            <td>{{$index + 1}}&nbsp;&nbsp;<a href="#" ng-click="showChangePass($index)" ng-show="item.UType === 'USER'">Đổi mật khẩu</a>&nbsp;&nbsp;<span ng-show="item.UType === 'ADMIN'">(quản trị)</span></td>
+                                            <td>{{item.UserName}}<a href="#" class="label label-info" ng-click="modify($index)">chi tiết</a></td>
+                                            <td>{{item.FullName}}</td>
+                                            <td>{{item.Group}}</td>
+                                            <td>{{item.Sex}}</td>
+                                            <td>{{item.Phone}}</td>
+                                            <td>{{item.Address}}</td>
+                                            <td><input type="checkbox" ng-model="item.IsActive" ng-checked="item.IsActive" ng-show="item.UType === 'USER'" ng-change="activeAccounts($index)" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end table data-->
+                        </div>
+
+                    </div>
+
+
                 </div>
-                <!-- end table data-->
+                <!-- end x_content-->
             </div>
-            <!-- end x_content-->
+            <!-- end x_pannel-->
         </div>
-        <!-- end x_pannel-->
+
     </div>
 
 
-    <!-- tao model them moi-->
-    <div id="insertmodal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
+
+    <!-- Modal -->
+    <div id="addNgDungModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{modaltitle}}</h4>
+                    <h4 class="modal-title">Thêm người dùng</h4>
                 </div>
-
-
-                <!-- begin form-->
-                <form class="css-form" name="createForm" ng-submit="finishForm(createForm.$valid)">
-                    <!-- body-->
+                <form ng-submit="finishCreate()">
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Mã NV</label>
-                                    <input type="text" class="form-control" ng-model="Info.MaNV" ng-disabled="IDDis" required />
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Họ và tên</label>
-                                    <input type="text" class="form-control" ng-model="Info.HoTen" required />
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>Nhóm người dùng</label>
-                                    <select class="form-control" ng-model="Info.Quyen" required>
-                                        <option ng-repeat="x in AllNhom" value="{{x.MaNhom}}">{{x.TenNhom | uppercase}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Năm sinh</label>
-                                    <input type="text" class="form-control" ng-model="Info.NgaySinh"  />
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Giới tính</label>
-                                    <select class="form-control" ng-model="Info.GioiTinh">
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nu">Nữ</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <input type="text" class="form-control" ng-model="Info.DiaChi"  />
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" ng-model="Info.Email"  />
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>SĐT</label>
-                                    <input type="text" class="form-control" ng-model="Info.SDT"  />
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input type="text" class="form-control" ng-model="Info.MatKhau" required />
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Xác nhận mật khẩu</label>
-                                    <input type="text" class="form-control" ng-model="Info.MatKhau" required />
-                                </div>
-                            </div>                           
+                        <div class="form-group">
+                            <label>Mã người dùng</label>
+                            <input type="text" ng-model="account.UserName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input type="text" ng-model="account.FullName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" ng-model="account.Password" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu</label>
+                            <input type="password" ng-model="account.ConfirmPassword" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại</label>
+                            <input type="text" ng-model="account.Phone" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <select ng-model="account.Sex" class="form-control" required>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Không xác định">Không xác định</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" ng-model="account.Address" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhóm người dùng</label>
+                            <select ng-model="account.Group" class="form-control" required>
+                                <option ng-repeat="x in groups" value="{{x.code}}">{{x.name}}</option>
+                            </select>
                         </div>
                     </div>
-                    <!-- end body-->
-                    <!-- begin footer-->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Hoàn thành</button>
+                        <button type="submit" class="btn btn-default">Xác nhận</button>
                     </div>
-                    <!-- end footer-->
                 </form>
-                <!-- end form-->
-
             </div>
-            <!-- end modal content-->
+
         </div>
     </div>
-    <!-- end modal them-->
+
+
+    <div id="modifyNgDungModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Chỉnh sửa thông tin người dùng</h4>
+                </div>
+                <form ng-submit="finishModify()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Mã người dùng</label>
+                            <input type="text" value="{{account.UserName}}" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input type="text" ng-model="account.FullName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại</label>
+                            <input type="text" ng-model="account.Phone" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <select ng-model="account.Sex" class="form-control" required>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Không xác định">Không xác định</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" ng-model="account.Address" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhóm người dùng</label>
+                            <select ng-model="account.Group" class="form-control" required>
+                                <option ng-repeat="x in groups" value="{{x.code}}">{{x.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="changepassmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đổi mật khẩu</h4>
+                </div>
+                <form ng-submit="finishChangePass()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" value="{{changePass.UserName}}" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đầy đủ</label>
+                            <input type="text" value="{{changePass.FullName}}" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" ng-model="changePass.Password" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu</label>
+                            <input type="password" ng-model="changePass.ConfirmPassword" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 
 <!-- end content-->
 @section scripts {
 
-    <script>
-
-        // tao controller
-        var app = angular.module('myApp', ['ui.bootstrap', 'ui.mask']);
-        app.controller('myCtrl', function ($scope, $http, $filter) {
-
-            $scope.AllNhom = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.AllNhom))');
-            // lay du lieu
-            $scope.allDanhMuc = [];
-            $scope.GetData = function () {
-                showLoader(true);
-                $http({
-                    method: "GET",
-                    url: "/NguoiDung/getNhanVien"
-                }).then(function mySuccess(response) {
-                    showLoader(false);
-
-                    if (response.data.error === 0) {
-
-                        $scope.allDanhMuc = response.data.data;
-                    }
-
-                }, function myError(response) {
-                    showLoader(false);
-                    showNotify('Connect error');
-                });
-            }
-            // goi lay du liẹu
-
-            $scope.GetData();
-            //
-            // khoi tao bien dung cho create va edit
-            $scope.Info = {};
-            $scope.IsAction = '';
-
-            $scope.addNew = function () {
-
-                $scope.Info = { "MaTV": "", "HoTen": "","NamSinh":"","GioiTinh":"","SDT":"","Email":"","DiaChi":"","MatKhau":"","Quyen":""};
-                $scope.modaltitle = "Thêm mới nhân viên";
-                $scope.IDDis = false;
-                $scope.IsAction = 'add';
-                showModel("insertmodal");
-
-            };
-
-
-
-            $scope.edit = function (index) {
-                var info = $scope.allDanhMuc[index];
-                $scope.Info = angular.copy(info);
-                $scope.modaltitle = "Chỉnh sửa nhân viên";
-                $scope.IDDis = true;
-                $scope.IsAction = 'edit';
-                showModel("insertmodal");
-            };
-
-            // tim index theo ma tinh
-            function getSelectedIndex(id) {
-                for (var i = 0; i < $scope.allDanhMuc.length; i++)
-                    if ($scope.allDanhMuc[i].NamHoc === id)
-                        return i;
-                return -1;
-            };
-
-            // action
-
-            $scope.finishForm = function (isValid) {
-                if ($scope.IsAction === 'add') {
-                    $scope.sendCreate();
-                } else if ($scope.IsAction === 'edit') {
-                    $scope.sendEdit();
-                } else if ($scope.IsAction === 'delete') {
-                    $scope.Info = angular.copy(info);
-                    $scope.sendDelete();
-                }
-            };
-            // them tinh
-            $scope.sendCreate = function () {
-                showLoader(true);
-                $http({
-                    method: "POST",
-                    url: "/NguoiDung/create",
-                    data: { nv: $scope.Info }
-                }).then(function success(response) {
-
-                    var result = response.data;
-
-                    if (result.error === 0) {
-                        $scope.GetData();
-                        $scope.allDanhMuc.unshift(result.data);
-
-                        hideModel("insertmodal");
-
-                        showNotify("Đã thêm nhân viên");
-
-                    } else {
-
-                        alert(result.msg);
-
-                    }
-
-                    showLoader(false);
-
-                }
-                    , function error(response) {
-                        showNotify("connect has disconnect");
-                        showLoader(false);
-                    });
-
-            };
-
-            // cap nhat tinh
-            $scope.sendEdit = function () {
-                console.log("edit");
-                showLoader(true);
-                //console.log($scope.Info.NamHienTai);
-                $http({
-                    method: "POST",
-                    url: "/NguoiDung/edit",
-                    data: { nv: $scope.Info }
-                }).then(
-                    function success(response) {
-                        $scope.GetData();
-                        var result = response.data;
-
-                        if (result.error === 0) {
-
-                            var findIndex = getSelectedIndex(result.data.NamHoc);
-
-                            if (findIndex !== -1) {
-                                $scope.allDanhMuc[findIndex] = angular.copy(result.data);
-                            }
-
-                            showNotify("Đã cập nhật");
-                            hideModel("insertmodal");
-
-                        } else {
-
-                            alert(result.msg);
-
-                        }
-
-                        showLoader(false);
-
-                    },
-                    function errror(response) {
-                        showLoader(false);
-                        showNotify("connect has disconnect");
-                    }
-                    );
-            };
-
-            // xoa du lieu
-            $scope.sendDelete = function (index) {
-                var info = $scope.allDanhMuc[index];
-                var r = confirm("Bạn muốn xóa không ?");
-                if (r) {
-                    showLoader(true);
-
-                    $http({
-                        method: "POST",
-                        url: "/NguoiDung/delete",
-                        data: { manv: info.MaNV }
-                    }).then(
-                        function success(response) {
-
-                            var result = response.data;
-
-                            if (result.error == 0) {
-
-                                $scope.allDanhMuc.splice(index, 1);
-
-                            } else {
-
-                                alert(result.msg);
-
-                            }
-
-                            showLoader(false);
-
-                        },
-                        function errror(response) {
-                            showLoader(false);
-                            showNotify("connect has disconnect");
-                        }
-                        );
-                } else {
-
-                }
-            }
-
-        });
-        //-- end controller
-
+    <script type="text/javascript">
+        var groups = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.Groups))');
     </script>
+
+    <script src="~/Scripts/hethong/nguoidung.js"></script>
 }
 
 

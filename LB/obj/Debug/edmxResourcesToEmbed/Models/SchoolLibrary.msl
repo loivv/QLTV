@@ -1,6 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ssofty_com_thuvienModelStoreContainer" CdmEntityContainer="ssofty_com_thuvienEntities">
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+          <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UType" ColumnName="UType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Tbl_BanQuyen">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_BanQuyen">
         <MappingFragment StoreEntitySet="Tbl_BanQuyen">
@@ -285,9 +310,9 @@
     <EntitySetMapping Name="Tbl_NhomNguoiDung">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_NhomNguoiDung">
         <MappingFragment StoreEntitySet="Tbl_NhomNguoiDung">
+          <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
           <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
           <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
-          <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -564,345 +589,83 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="BaoCaoChuaKiemKe" FunctionName="ssofty_com_thuvienModel.Store.BaoCaoChuaKiemKe">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BaoCaoChuaKiemKe_Result">
-          <ScalarProperty Name="MaSach" ColumnName="MaSach" />
-          <ScalarProperty Name="TenSach" ColumnName="TenSach" />
-          <ScalarProperty Name="SoCaBiet" ColumnName="SoCaBiet" />
-          <ScalarProperty Name="TacGia" ColumnName="TacGia" />
-          <ScalarProperty Name="TenKho" ColumnName="TenKho" />
-          <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-          <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
-          <ScalarProperty Name="NgayTL" ColumnName="NgayTL" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="BCBanDocbyPhong" FunctionName="ssofty_com_thuvienModel.Store.BCBanDocbyPhong">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BCBanDocbyPhong_Result">
-          <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
-          <ScalarProperty Name="BanDoc" ColumnName="BanDoc" />
-          <ScalarProperty Name="TongMuon" ColumnName="TongMuon" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="BCSachbyPhong" FunctionName="ssofty_com_thuvienModel.Store.BCSachbyPhong">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.BCSachbyPhong_Result">
-          <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
-          <ScalarProperty Name="TongSach" ColumnName="TongSach" />
-          <ScalarProperty Name="TongMuon" ColumnName="TongMuon" />
-          <ScalarProperty Name="TongNo" ColumnName="TongNo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="NhanAnPhamNgay" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamNgay">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamNgay_Result">
-          <ScalarProperty Name="Ten" ColumnName="Ten" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="NhanAnPhamThang" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamThang">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamThang_Result">
-          <ScalarProperty Name="Ten" ColumnName="Ten" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="NhanAnPhamTuan" FunctionName="ssofty_com_thuvienModel.Store.NhanAnPhamTuan">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.NhanAnPhamTuan_Result">
-          <ScalarProperty Name="Ten" ColumnName="Ten" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="NguoiLH" ColumnName="NguoiLH" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SoCaBiet_P1_01" FunctionName="ssofty_com_thuvienModel.Store.SoCaBiet_P1_01">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.SoCaBiet_P1_01_Result">
-          <ScalarProperty Name="NgayVaoSo" ColumnName="NgayVaoSo" />
-          <ScalarProperty Name="STT" ColumnName="STT" />
-          <ScalarProperty Name="TGTS" ColumnName="TGTS" />
-          <ScalarProperty Name="NXB" ColumnName="NXB" />
-          <ScalarProperty Name="NoiXuatBan" ColumnName="NoiXuatBan" />
-          <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-          <ScalarProperty Name="Nguon" ColumnName="Nguon" />
-          <ScalarProperty Name="MonLoai" ColumnName="MonLoai" />
-          <ScalarProperty Name="SoVaoSoTQ" ColumnName="SoVaoSoTQ" />
-          <ScalarProperty Name="SoBienXB" ColumnName="SoBienXB" />
-          <ScalarProperty Name="NamKK" ColumnName="NamKK" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SoTongQuat_P1_01" FunctionName="ssofty_com_thuvienModel.Store.SoTongQuat_P1_01">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.SoTongQuat_P1_01_Result">
-          <ScalarProperty Name="Nam" ColumnName="Nam" />
-          <ScalarProperty Name="NgayVaoSo" ColumnName="NgayVaoSo" />
-          <ScalarProperty Name="Nguon" ColumnName="Nguon" />
-          <ScalarProperty Name="ChungTu" ColumnName="ChungTu" />
-          <ScalarProperty Name="Sach" ColumnName="Sach" />
-          <ScalarProperty Name="Bao" ColumnName="Bao" />
-          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-          <ScalarProperty Name="TriGia" ColumnName="TriGia" />
-          <ScalarProperty Name="GiaoKhoa" ColumnName="GiaoKhoa" />
-          <ScalarProperty Name="ThamKhao" ColumnName="ThamKhao" />
-          <ScalarProperty Name="NghiepVu" ColumnName="NghiepVu" />
-          <ScalarProperty Name="ThieuNhi" ColumnName="ThieuNhi" />
-          <ScalarProperty Name="SachKhac" ColumnName="SachKhac" />
-          <ScalarProperty Name="Anh" ColumnName="Anh" />
-          <ScalarProperty Name="Phap" ColumnName="Phap" />
-          <ScalarProperty Name="NgonNguKhac" ColumnName="NgonNguKhac" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Tbl_BanQuyen_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_BanQuyen_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_DinhDangTaiLieu_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DinhDangTaiLieu_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_DinhDangTaiLieu_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DinhDangTaiLieu_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_DocGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DocGia_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_DocGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_DocGia_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_LoaiVanBan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LoaiVanBan_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_LoaiVanBan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LoaiVanBan_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_LyDoPhatThe_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LyDoPhatThe_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_LyDoPhatThe_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_LyDoPhatThe_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NgonNgu_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NgonNgu_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NgonNgu_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NgonNgu_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoNgay_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoNgay_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoNgay_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoNgay_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoThang_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoThang_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoThang_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoThang_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoTuan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoTuan_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_TheoTuan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_TheoTuan_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhaCungCap_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhaCungCap_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhanVien_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhanVien_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhanVien_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhanVien_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhapSach_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhapSach_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhapSach_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhapSach_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhomDocGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomDocGia_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhomDocGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomDocGia_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhomNguoiDung_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomNguoiDung_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_NhomNguoiDung_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_NhomNguoiDung_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_PhanLoai_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanLoai_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_PhanLoai_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanLoai_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_PhanQuyen_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanQuyen_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_PhanQuyen_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhanQuyen_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_PhongTruong_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_PhongTruong_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_Sach_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Sach_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_Sach_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Sach_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_SoCaBiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_SoCaBiet_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_SoCaBiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_SoCaBiet_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_TacGia_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_TacGia_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_TacGia_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_TacGia_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_ThanhLy_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLy_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_ThanhLy_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLy_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_ThanhLyChiTiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLyChiTiet_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_ThanhLyChiTiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThanhLyChiTiet_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_Thongketheokhosach" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheokhosach">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheokhosach_Result">
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-          <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-          <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-          <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-          <ScalarProperty Name="Mat" ColumnName="Mat" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Tbl_Thongketheomonloai" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheomonloai">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheomonloai_Result">
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-          <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-          <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-          <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-          <ScalarProperty Name="Mat" ColumnName="Mat" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Tbl_Thongketheonamxuatban" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheonamxuatban">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheonamxuatban_Result">
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-          <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-          <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-          <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-          <ScalarProperty Name="Mat" ColumnName="Mat" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Tbl_Thongketheonhande" FunctionName="ssofty_com_thuvienModel.Store.Tbl_Thongketheonhande">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Tbl_Thongketheonhande_Result">
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="TongSo" ColumnName="TongSo" />
-          <ScalarProperty Name="SanSang" ColumnName="SanSang" />
-          <ScalarProperty Name="DangMuon" ColumnName="DangMuon" />
-          <ScalarProperty Name="ThanhLy" ColumnName="ThanhLy" />
-          <ScalarProperty Name="Mat" ColumnName="Mat" />
-          <ScalarProperty Name="Khac" ColumnName="Khac" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Tbl_ThongTin_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThongTin_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_ThongTin_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_ThongTin_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_VanBan_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_VanBan_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_VanBan_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_VanBan_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_XuatSachChiTiet_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachChiTiet_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_XuatSachChiTiet_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachChiTiet_update" />
-    <FunctionImportMapping FunctionImportName="Tbl_XuatSachTong_insert" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachTong_insert" />
-    <FunctionImportMapping FunctionImportName="Tbl_XuatSachTong_update" FunctionName="ssofty_com_thuvienModel.Store.Tbl_XuatSachTong_update" />
-    <FunctionImportMapping FunctionImportName="ThongKe_AnPham_MuonNhieuNhat" FunctionName="ssofty_com_thuvienModel.Store.ThongKe_AnPham_MuonNhieuNhat">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.ThongKe_AnPham_MuonNhieuNhat_Result">
-          <ScalarProperty Name="NhanDe" ColumnName="NhanDe" />
-          <ScalarProperty Name="TacGia" ColumnName="TacGia" />
-          <ScalarProperty Name="NamXuatBan" ColumnName="NamXuatBan" />
-          <ScalarProperty Name="NhaXuatBan" ColumnName="NhaXuatBan" />
-          <ScalarProperty Name="SoLanMuon" ColumnName="SoLanMuon" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ThongKe_BanDoc_MuonNhieuNhat" FunctionName="ssofty_com_thuvienModel.Store.ThongKe_BanDoc_MuonNhieuNhat">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.ThongKe_BanDoc_MuonNhieuNhat_Result">
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="SoThe" ColumnName="SoThe" />
-          <ScalarProperty Name="Nhom" ColumnName="Nhom" />
-          <ScalarProperty Name="SoLanMuon" ColumnName="SoLanMuon" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UpdateSoCaBietKho_MuonSach" FunctionName="ssofty_com_thuvienModel.Store.UpdateSoCaBietKho_MuonSach" />
-    <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUser">
-        <MappingFragment StoreEntitySet="AspNetUsers">
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
-          <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UMS_GroupMenu">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_GroupMenu">
         <MappingFragment StoreEntitySet="UMS_GroupMenu">
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="Icon" ColumnName="Icon" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UMS_Menu">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_Menu">
         <MappingFragment StoreEntitySet="UMS_Menu">
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
-          <ScalarProperty Name="Icon" ColumnName="Icon" />
-          <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="GroupMenuId" ColumnName="GroupMenuId" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UMS_MenuGroupUser">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_MenuGroupUser">
         <MappingFragment StoreEntitySet="UMS_MenuGroupUser">
-          <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
-          <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
-          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+          <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UMS_UserGroups">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.UMS_UserGroups">
         <MappingFragment StoreEntitySet="UMS_UserGroups">
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
           <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="ssofty_com_thuvienModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetRole">
         <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserClaims">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserClaim">
         <MappingFragment StoreEntitySet="AspNetUserClaims">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserLogins">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserLogin">
         <MappingFragment StoreEntitySet="AspNetUserLogins">
-          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserRoles">
       <EntityTypeMapping TypeName="ssofty_com_thuvienModel.AspNetUserRole">
         <MappingFragment StoreEntitySet="AspNetUserRoles">
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -950,6 +713,10 @@
           <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
           <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UType" ColumnName="UType" />
+          <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
