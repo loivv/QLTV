@@ -163,10 +163,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BanDoc\BanDocController.cs" />
+    <Compile Include="Controllers\BanDoc\NhomBanDocController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DanhMuc\DinhDangTaiLieuController.cs" />
     <Compile Include="Controllers\DanhMuc\KhoAnPhamController.cs" />
+    <Compile Include="Controllers\DanhMuc\LyDoPhatTheController.cs" />
     <Compile Include="Controllers\DanhMuc\NhaXuatBanController.cs" />
+    <Compile Include="Controllers\DanhMuc\PhanLoaiController.cs" />
     <Compile Include="Controllers\DanhMuc\TacGiaController.cs" />
+    <Compile Include="Controllers\DanhMuc\TinhChatNguonNhapController.cs" />
+    <Compile Include="Controllers\DanhMuc\TinhTrangAnPhamController.cs" />
     <Compile Include="Controllers\HeThong\MonHocController.cs" />
     <Compile Include="Controllers\HeThong\NamHocController.cs" />
     <Compile Include="Controllers\HeThong\NgonNguController.cs" />
@@ -961,6 +968,13 @@
     <Content Include="Views\NgonNgu\Show.cshtml" />
     <Content Include="Views\TacGia\Show.cshtml" />
     <Content Include="Views\NhaXuatBan\Show.cshtml" />
+    <Content Include="Views\PhanLoai\Show.cshtml" />
+    <Content Include="Views\DinhDangTaiLieu\Show.cshtml" />
+    <Content Include="Views\TinhTrangAnPham\Show.cshtml" />
+    <Content Include="Views\TinhChatNguonNhap\Show.cshtml" />
+    <Content Include="Views\LyDoPhatThe\Show.cshtml" />
+    <Content Include="Views\NhomBanDoc\Show.cshtml" />
+    <Content Include="Views\BanDoc\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

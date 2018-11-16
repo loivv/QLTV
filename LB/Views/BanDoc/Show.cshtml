@@ -1,0 +1,450 @@
+﻿@{
+    ViewBag.Title = "Thông tin bạn đọc";
+}
+
+<div class="row" ng-app="myApp" ng-controller="myCtrl">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Danh sách bạn đọc</h2>
+                <div class="nav navbar-right">
+                    <a class="btn btn-warning" ng-click="addNew()">Thêm mới</a>
+                    <a class="btn btn-primary" ng-click="showgiahan()">Gia hạn</a>
+                    <a class="btn btn-success" ng-click="addNew()">In thẻ</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- end x_title-->
+            <div class="x_content">
+                <div class="row">
+                </div>
+
+                <!-- table data-->
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>STT</th>
+                                <th>Số thẻ</th>
+                                <th>Mã bạn đọc</th>
+                                <th>Họ tên</th>
+                                <th>Lớp/tổ</th>
+                                <th>Ngày đăng ký</th>
+                                <th>Ngày hết hạn</th>
+                                <th>Nhóm</th>
+                                <th>Trạng thái</th>
+                                <th>#</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="item in allDanhMuc">
+                                <td>{{$index + 1}}</td>
+                                <td>{{item.SoThe}}</td>
+                                <td>{{item.MaDocGia}}</td>
+                                <td>{{item.HoTen}}</td>
+                                <td>{{item.Lop}}</td>
+                                <td>{{item.NgayDangKy.slice(6, -2) | date : 'dd/MM/yyyy'}}</td>
+                                <td>{{item.NgayHetHan.slice(6, -2) | date : 'dd/MM/yyyy'}}</td>
+                                <td>{{item.TenNhom}}</td>
+                                <td>{{item.TrangThai}}</td>
+                                <td><a href="#" ng-click="edit($index)">Xem</a></td>
+                                <td><a href="#" ng-click="sendDelete($index)">Xóa</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table data-->
+                <!--phan trang-->
+                <ul items-per-page="itemPerPage" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                <!-- end phan trang-->
+            </div>
+            <!-- end x_content-->
+        </div>
+        <!-- end x_pannel-->
+    </div>
+
+
+    <!-- tao model them moi-->
+    <div id="insertmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modaltitle}}</h4>
+                </div>
+
+                <!-- begin form-->
+                <form class="css-form" name="createForm" ng-submit="finishForm(createForm.$valid)">
+                    <!-- body-->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Mã bạn đọc</label>
+                                    <input type="text" class="form-control" ng-model="Info.MaDocGia" ng-disabled="IDDis" required />
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Họ tên bạn đọc</label>
+                                    <input type="text" class="form-control" ng-model="Info.HoTen" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <input type="text" model-view-value="true" class="form-control" ng-model="Info.NgaySinh" required ui-mask="99/99/9999" ui-mask-placeholder />
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Địa chỉ bạn đọc</label>
+                                    <input type="text" class="form-control" ng-model="Info.DiaChi" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Nhóm bạn đọc</label>
+                                    <select class="form-control" ng-model="Info.MaNhom" convert-to-number required>
+                                        <option ng-repeat="x in AllNhom" value="{{x.MaNhom}}">{{x.TenNhom | uppercase}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Lớp/tổ</label>
+                                    <input type="text" class="form-control" ng-model="Info.Lop" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Ngày đăng ký</label>
+                                    <input type="text" model-view-value="true" class="form-control" ng-model="Info.NgayDangKy" required ui-mask="99/99/9999" ui-mask-placeholder />
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Số thẻ - hệ thống tự sinh</label>
+                                    <input type="text" class="form-control" ng-model="Info.SoThe" ng-disabled="true" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <select class="form-control" ng-model="Info.TrangThai" required>
+                                        <option value="Chờ kích hoạt">Chờ kích hoạt</option>
+                                        <option value="Đang lưu thông">Đang lưu thông</option>
+                                        <option value="Rút thẻ">Rút thẻ</option>
+                                        <option value="Phạt thẻ">Phạt thẻ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    <!-- end body-->
+                    <!-- begin footer-->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Hoàn thành</button>
+                    </div>
+                    <!-- end footer-->
+                </form>
+                <!-- end form-->
+
+            </div>
+            <!-- end modal content-->
+        </div>
+    </div>
+    <!-- end modal them-->
+    <!-- tao model them moi-->
+    <div id="giahanmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modaltitle}}</h4>
+                </div>
+
+
+                <!-- begin form-->
+                <form class="css-form" name="createForm" ng-submit="giahan()">
+                    <!-- body-->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Vui lòng chọn thời gian cần gia hạn</label>
+                                    <select class="form-control" ng-model="Total">
+                                        <option value="90">3 tháng</option>
+                                        <option value="180">6 tháng</option>
+                                        <option value="270">9 tháng</option>
+                                        <option value="360">12 tháng</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end body-->
+                    <!-- begin footer-->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Hoàn thành</button>
+                    </div>
+                    <!-- end footer-->
+                </form>
+                <!-- end form-->
+
+            </div>
+            <!-- end modal content-->
+        </div>
+    </div>
+    <!-- end modal them-->
+</div>
+
+
+<!-- end content-->
+@section scripts {
+
+    <script>
+
+        // tao controller
+        var app = angular.module('myApp', ['ui.bootstrap', 'ui.mask']);
+        app.controller('myCtrl', function ($scope, $http, $filter) {
+
+            $scope.AllNhom = angular.fromJson('@Html.Raw(Json.Encode(ViewBag.AllNhom))');
+            // phan trang
+            $scope.numPages;
+            $scope.itemPerPage;
+            $scope.totalItems;
+            $scope.currentPage = 1;
+            $scope.maxSize = 5;
+            $scope.pageChanged = function () {
+                $scope.GetData($scope.currentPage);
+            };
+            // lay du lieu
+            $scope.allDanhMuc = [];
+            $scope.GetData = function (page) {
+                showLoader(true);
+                $http({
+                    method: "GET",
+                    url: "/BanDoc/getBanDoc"
+                }).then(function mySuccess(response) {
+                    showLoader(false);
+
+                    if (response.data.error === 0) {
+
+                        $scope.allDanhMuc = response.data.data;
+                        $scope.itemPerPage = response.data.pageSize;
+                        $scope.totalItems = response.data.toltalSize;
+                        $scope.numPages = Math.round($scope.totalItems / $scope.itemPerPage);
+                    }
+
+                }, function myError(response) {
+                    showLoader(false);
+                    showNotify('Connect error');
+                });
+            }
+            // goi lay du liẹu
+
+            $scope.GetData(1);
+            //
+            // khoi tao bien dung cho create va edit
+            $scope.Info = {};
+            $scope.IsAction = '';
+
+            $scope.addNew = function () {
+                var date = new Date();
+                var fDate = $filter('date')(date, "dd/MM/yyyy");
+                var tDate = $filter('date')(date, "dd/MM/yyyy");
+                $scope.Info = { "MaDocGia": "", "HoTen": "", "NgaySinh": tDate, "DiaChi": "", "MaNhom": "", "Lop": "", "NgayDangKy": fDate, "SoThe": "", "TrangThai": "" };
+                $scope.modaltitle = "Thêm mới bạn đọc";
+                $scope.IDDis = false;
+                $scope.IsAction = 'add';
+                showModel("insertmodal");
+
+            };
+            //show gia han
+            $scope.showgiahan = function () {               
+                $scope.modaltitle = "Gia hạn bạn đọc";
+                showModel("giahanmodal");
+            };
+            //ket thuc show gia han
+
+
+            $scope.edit = function (index) {
+                var info = $scope.allDanhMuc[index];
+                $scope.Info = angular.copy(info);
+                var fDate = $filter('date')($scope.Info.NgayDangKy.slice(6, -2), "dd/MM/yyyy");
+                var tDate = $filter('date')($scope.Info.NgaySinh.slice(6, -2), "dd/MM/yyyy");
+                $scope.Info.NgayDangKy = fDate;
+                $scope.Info.NgaySinh = tDate;
+                $scope.modaltitle = "Chỉnh sửa bạn đọc";
+                $scope.IDDis = true;
+                $scope.IsAction = 'edit';
+                showModel("insertmodal");
+            };
+
+
+            // action
+
+            $scope.finishForm = function (isValid) {
+                if ($scope.IsAction === 'add') {
+                    $scope.sendCreate();
+                } else if ($scope.IsAction === 'edit') {
+                    $scope.sendEdit();
+                } else if ($scope.IsAction === 'delete') {
+                    $scope.Info = angular.copy(info);
+                    $scope.sendDelete();
+                }
+            };
+            // them tinh
+            $scope.sendCreate = function () {
+                showLoader(true);
+                $http({
+                    method: "POST",
+                    url: "/BanDoc/create",
+                    data: { dg: $scope.Info,tuNgay: $scope.Info.NgayDangKy,denNgay: $scope.Info.NgaySinh }
+                }).then(function success(response) {
+
+                    var result = response.data;
+
+                    if (result.error === 0) {
+                        $scope.GetData();
+                        $scope.allDanhMuc.unshift(result.data);
+
+                        hideModel("insertmodal");
+
+                        showNotify("Đã thêm thông tin");
+
+                    } else {
+
+                        alert(result.msg);
+
+                    }
+
+                    showLoader(false);
+
+                }
+                    , function error(response) {
+                        showNotify("connect has disconnect");
+                        showLoader(false);
+                    });
+
+            };
+
+            // cap nhat tinh
+            $scope.sendEdit = function () {
+
+                showLoader(true);
+                //console.log($scope.Info.NamHienTai);
+                $http({
+                    method: "POST",
+                    url: "/BanDoc/edit",
+                    data: { dg: $scope.Info, tuNgay: $scope.Info.NgayDangKy,denNgay: $scope.Info.NgaySinh}
+                }).then(
+                    function success(response) {
+                        $scope.GetData();
+                        var result = response.data;
+
+                        if (result.error === 0) {
+                            showNotify("Đã cập nhật");
+                            hideModel("insertmodal");
+
+                        } else {
+
+                            alert(result.msg);
+
+                        }
+
+                        showLoader(false);
+
+                    },
+                    function errror(response) {
+                        showLoader(false);
+                        showNotify("connect has disconnect");
+                    }
+                    );
+            };
+
+            // xoa du lieu
+            $scope.sendDelete = function (index) {
+                var info = $scope.allDanhMuc[index];
+                var r = confirm("Bạn muốn xóa không ?");
+                if (r) {
+                    showLoader(true);
+
+                    $http({
+                        method: "POST",
+                        url: "/BanDoc/delete",
+                        data: { ma: info.MaDocGia }
+                    }).then(
+                        function success(response) {
+
+                            var result = response.data;
+
+                            if (result.error == 0) {
+
+                                $scope.allDanhMuc.splice(index, 1);
+
+                            } else {
+
+                                alert(result.msg);
+
+                            }
+
+                            showLoader(false);
+
+                        },
+                        function errror(response) {
+                            showLoader(false);
+                            showNotify("connect has disconnect");
+                        }
+                        );
+                } else {
+
+                }
+            }
+            //gia han ban doc
+            $scope.giahan = function () {
+                showLoader(true);
+                //console.log($scope.Info.NamHienTai);
+                $http({
+                    method: "POST",
+                    url: "/BanDoc/giahan",
+                    data: { ngay: $scope.Total}
+                }).then(
+                    function success(response) {
+                        $scope.GetData(1);
+                        var result = response.data;
+
+                        if (result.error === 0) {
+                            showNotify("Đã cập nhật");
+                            hideModel("giahanmodal");
+
+                        } else {
+
+                            alert(result.msg);
+
+                        }
+
+                        showLoader(false);
+
+                    },
+                    function errror(response) {
+                        showLoader(false);
+                        showNotify("connect has disconnect");
+                    }
+                    );
+            };
+            //ket thuc gia han
+
+        });
+        //-- end controller
+
+    </script>
+}
+
+
+
