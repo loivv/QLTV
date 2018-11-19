@@ -734,6 +734,13 @@
     <FunctionImport Name="USER_GETMENU" ReturnType="Collection(ssofty_com_thuvienModel.USER_GETMENU_Result)">
       <Parameter Name="user" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Rpt_TheThuVien" ReturnType="Collection(ssofty_com_thuvienModel.Rpt_TheThuVien_Result)">
+      <Parameter Name="MaTruong" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Rpt_PhatTheBanDoc" ReturnType="Collection(ssofty_com_thuvienModel.Rpt_PhatTheBanDoc_Result)">
+      <Parameter Name="MaTruong" Mode="In" Type="String" />
+      <Parameter Name="Ma" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GROUPUSER_GETLISTMENU_Result">
     <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
@@ -784,5 +791,35 @@
     <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
     <Property Type="String" Name="groupName" Nullable="true" />
     <Property Type="String" Name="GroupIcon" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="Rpt_TheThuVien_Result">
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Lop" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MaTruong" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TenPhong" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TenNhom" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NgaySinh" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NgayHetHan" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="SoThe" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MaDocGia" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Rpt_PhatTheBanDoc_Result">
+    <Property Type="String" Name="MaDocGia" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Lop" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MaTruong" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TenPhong" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Ma" Nullable="false" />
+    <Property Type="String" Name="SoThe" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="LyDo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Khac" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="HinhThuc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="300" />
+    <Property Type="Double" Name="SoTien" Nullable="true" />
+    <Property Type="String" Name="NgayPhat" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TuNgay" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="DenNgay" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

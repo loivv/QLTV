@@ -122,5 +122,27 @@ namespace LB.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USER_GETMENU_Result>("USER_GETMENU", userParameter);
         }
+    
+        public virtual ObjectResult<Rpt_TheThuVien_Result> Rpt_TheThuVien(string maTruong)
+        {
+            var maTruongParameter = maTruong != null ?
+                new ObjectParameter("MaTruong", maTruong) :
+                new ObjectParameter("MaTruong", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Rpt_TheThuVien_Result>("Rpt_TheThuVien", maTruongParameter);
+        }
+    
+        public virtual ObjectResult<Rpt_PhatTheBanDoc_Result> Rpt_PhatTheBanDoc(string maTruong, Nullable<int> ma)
+        {
+            var maTruongParameter = maTruong != null ?
+                new ObjectParameter("MaTruong", maTruong) :
+                new ObjectParameter("MaTruong", typeof(string));
+    
+            var maParameter = ma.HasValue ?
+                new ObjectParameter("Ma", ma) :
+                new ObjectParameter("Ma", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Rpt_PhatTheBanDoc_Result>("Rpt_PhatTheBanDoc", maTruongParameter, maParameter);
+        }
     }
 }

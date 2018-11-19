@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LB.Models;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using LB.Models;
 namespace LB.Controllers.HeThong
 {
     [Authorize(Roles = "admin")]
@@ -115,7 +113,7 @@ namespace LB.Controllers.HeThong
                     msg = "Lỗi khi cấp quyền"
                 }, JsonRequestBehavior.AllowGet);
 
-            var checkGroup = db.UMS_UserGroups.Where(p=> p.GroupID == groupId);
+            var checkGroup = db.UMS_UserGroups.Where(p => p.GroupID == groupId);
 
             if (checkGroup == null)
                 return Json(new ResultInfo()

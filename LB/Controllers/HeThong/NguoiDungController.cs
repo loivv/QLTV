@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LB.Models;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using LB.Models;
 namespace LB.Controllers.HeThong
 {
     [Authorize(Roles = "admin")]
@@ -48,7 +46,7 @@ namespace LB.Controllers.HeThong
         {
             var find = db.AspNetUsers.Where(p => p.UserName == model.UserName).FirstOrDefault();
 
-            if(find != null)
+            if (find != null)
             {
                 find.HoTen = model.FullName;
                 find.PhoneNumber = model.Phone;

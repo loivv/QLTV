@@ -679,6 +679,13 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
   <Function Name="GROUPUSER_GETLISTMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="groupId" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Rpt_PhatTheBanDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ma" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Rpt_TheThuVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="USER_CHECKACCESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="groupId" Type="nvarchar" Mode="In" />
     <Parameter Name="menuCode" Type="nvarchar" Mode="In" />

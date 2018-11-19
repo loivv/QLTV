@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>TestShowReport</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- end x_title-->
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary" type="button" ng-click="showPDF('/report/GetReport')">Xem</button>
+                            <button class="btn btn-warning" type="button" ng-click="printPDF('/report/GetReport')">In</button>
+                        </div>
+                        <div class="col-sm-10" style="border: dashed 1px green">
+                            <canvas id="the-canvas"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end x_content-->
+            </div>
+            <!-- end x_pannel-->
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts {
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+    <script>
+    
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $scope.showPDF = function (url) {
+                showLoader(true);
+                var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+                // The workerSrc property shall be specified.
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.js';
+
+                // Asynchronous download of PDF
+                var loadingTask = pdfjsLib.getDocument(url);
+                loadingTask.promise.then(function (pdf) {
+                    console.log('PDF loaded');
+                    // Fetch the first page
+                    var pageNumber = 1;
+                    pdf.getPage(pageNumber).then(function (page) {
+                        console.log('Page loaded');
+                        var scale = 1;
+                        var viewport = page.getViewport(scale);
+
+                        // Prepare canvas using PDF page dimensions
+                        var canvas = document.getElementById('the-canvas');
+                        var context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        // Render PDF page into canvas context
+                        var renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        var renderTask = page.render(renderContext);
+                        renderTask.then(function () {
+                            showLoader(false);
+                        });
+                    });
+                }, function (reason) {
+                    // PDF loading error
+                    console.error(reason)
+                });
+            };
+
+            $scope.printPDF = function (url) {
+                window.open(url, '_blank');
+            };
+
+        });
+    </script>
+}

@@ -684,6 +684,13 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
         <Function Name="GROUPUSER_GETLISTMENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="groupId" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Rpt_PhatTheBanDoc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ma" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Rpt_TheThuVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTruong" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="USER_CHECKACCESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="groupId" Type="nvarchar" Mode="In" />
           <Parameter Name="menuCode" Type="nvarchar" Mode="In" />
@@ -1496,7 +1503,7 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
           <FunctionImport Name="GROUPUSER_GETLISTMENU" ReturnType="Collection(ssofty_com_thuvienModel.GROUPUSER_GETLISTMENU_Result)">
-            <Parameter Name="groupId" Mode="In" Type="String" />
+          <Parameter Name="groupId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USER_CHECKACCESS" ReturnType="Collection(ssofty_com_thuvienModel.USER_CHECKACCESS_Result)">
             <Parameter Name="groupId" Mode="In" Type="String" />
@@ -1507,7 +1514,14 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
             <Parameter Name="role" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USER_GETMENU" ReturnType="Collection(ssofty_com_thuvienModel.USER_GETMENU_Result)">
-            <Parameter Name="user" Mode="In" Type="String" />
+          <Parameter Name="user" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Rpt_TheThuVien" ReturnType="Collection(ssofty_com_thuvienModel.Rpt_TheThuVien_Result)">
+          <Parameter Name="MaTruong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Rpt_PhatTheBanDoc" ReturnType="Collection(ssofty_com_thuvienModel.Rpt_PhatTheBanDoc_Result)">
+            <Parameter Name="MaTruong" Mode="In" Type="String" />
+            <Parameter Name="Ma" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GROUPUSER_GETLISTMENU_Result">
@@ -1559,6 +1573,36 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
           <Property Type="String" Name="Code" Nullable="true" MaxLength="128" />
           <Property Type="String" Name="groupName" Nullable="true" />
           <Property Type="String" Name="GroupIcon" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="Rpt_TheThuVien_Result">
+          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Lop" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MaTruong" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="TenPhong" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenNhom" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NgaySinh" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NgayHetHan" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="SoThe" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MaDocGia" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="Rpt_PhatTheBanDoc_Result">
+          <Property Type="String" Name="MaDocGia" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Lop" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="MaTruong" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="TenPhong" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TenTruong" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="Ma" Nullable="false" />
+          <Property Type="String" Name="SoThe" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="LyDo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Khac" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="HinhThuc" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="300" />
+          <Property Type="Double" Name="SoTien" Nullable="true" />
+          <Property Type="String" Name="NgayPhat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="TuNgay" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DenNgay" Nullable="true" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2297,6 +2341,44 @@ warning 6002: The table/view 'ssofty_com_thuvien.dbo.AspNetUserRoles' does not h
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="groupName" ColumnName="groupName" />
                 <ScalarProperty Name="GroupIcon" ColumnName="GroupIcon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Rpt_TheThuVien" FunctionName="ssofty_com_thuvienModel.Store.Rpt_TheThuVien">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Rpt_TheThuVien_Result">
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Lop" ColumnName="Lop" />
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+                <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
+                <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+                <ScalarProperty Name="SoThe" ColumnName="SoThe" />
+                <ScalarProperty Name="MaDocGia" ColumnName="MaDocGia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Rpt_PhatTheBanDoc" FunctionName="ssofty_com_thuvienModel.Store.Rpt_PhatTheBanDoc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ssofty_com_thuvienModel.Rpt_PhatTheBanDoc_Result">
+                <ScalarProperty Name="MaDocGia" ColumnName="MaDocGia" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Lop" ColumnName="Lop" />
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+                <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="SoThe" ColumnName="SoThe" />
+                <ScalarProperty Name="LyDo" ColumnName="LyDo" />
+                <ScalarProperty Name="Khac" ColumnName="Khac" />
+                <ScalarProperty Name="HinhThuc" ColumnName="HinhThuc" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+                <ScalarProperty Name="NgayPhat" ColumnName="NgayPhat" />
+                <ScalarProperty Name="TuNgay" ColumnName="TuNgay" />
+                <ScalarProperty Name="DenNgay" ColumnName="DenNgay" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

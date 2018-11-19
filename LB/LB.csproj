@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -166,6 +169,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BanDoc\BanDocController.cs" />
     <Compile Include="Controllers\BanDoc\NhomBanDocController.cs" />
+    <Compile Include="Controllers\BaoCao\ReportController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DanhMuc\DinhDangTaiLieuController.cs" />
     <Compile Include="Controllers\DanhMuc\KhoAnPhamController.cs" />
@@ -173,12 +177,9 @@
     <Compile Include="Controllers\DanhMuc\NhaXuatBanController.cs" />
     <Compile Include="Controllers\DanhMuc\PhanLoaiController.cs" />
     <Compile Include="Controllers\DanhMuc\TacGiaController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\DanhMuc\TinhChatNguonNhapController.cs" />
     <Compile Include="Controllers\DanhMuc\TinhTrangAnPhamController.cs" />
-=======
     <Compile Include="Controllers\ErrorController.cs" />
->>>>>>> 7ab7bbd717f2e3145075a16286618a67caa373c9
     <Compile Include="Controllers\HeThong\MonHocController.cs" />
     <Compile Include="Controllers\HeThong\NamHocController.cs" />
     <Compile Include="Controllers\HeThong\NgonNguController.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\UserLogin.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
@@ -215,6 +217,12 @@
     <Compile Include="Models\IdentityCommon.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rpt_PhatTheBanDoc_Result.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rpt_TheThuVien_Result.cs">
+      <DependentUpon>SchoolLibrary.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SchoolLibrary.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -378,6 +386,35 @@
       <DependentUpon>SchoolLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\AnPham\MaAnPham.cs" />
+    <Compile Include="Report\AnPham\rptNhanAnPham.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptNhanAnPham.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BanDoc\BanDoc.cs" />
+    <Compile Include="Report\BanDoc\PhatThe.cs" />
+    <Compile Include="Report\BanDoc\rptBienBanPhatThe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBienBanPhatThe.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BanDoc\rptTheThuVien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTheThuVien.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\KiemKe\KiemKe.cs" />
+    <Compile Include="Report\KiemKe\rptBienBanChuaKiemKe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBienBanChuaKiemKe.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportUtils.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -942,7 +979,6 @@
     <Content Include="Views\NgonNgu\Show.cshtml" />
     <Content Include="Views\TacGia\Show.cshtml" />
     <Content Include="Views\NhaXuatBan\Show.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\PhanLoai\Show.cshtml" />
     <Content Include="Views\DinhDangTaiLieu\Show.cshtml" />
     <Content Include="Views\TinhTrangAnPham\Show.cshtml" />
@@ -950,15 +986,16 @@
     <Content Include="Views\LyDoPhatThe\Show.cshtml" />
     <Content Include="Views\NhomBanDoc\Show.cshtml" />
     <Content Include="Views\BanDoc\Show.cshtml" />
-=======
     <Content Include="Views\QuanTri\Show.cshtml" />
     <Content Include="Views\Error\ReLogin.cshtml" />
     <Content Include="Views\QuanTri\ShowMenu.cshtml" />
     <Content Include="Views\Shared\_NoneView.cshtml" />
->>>>>>> 7ab7bbd717f2e3145075a16286618a67caa373c9
+    <Content Include="Views\Report\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Report\BangKeAnPham\" />
+    <Folder Include="Views\BaoCAo\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
@@ -971,6 +1008,25 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\AnPham\rptNhanAnPham.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptNhanAnPham.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BanDoc\rptBienBanPhatThe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBienBanPhatThe.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BanDoc\rptTheThuVien.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTheThuVien.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\KiemKe\rptBienBanChuaKiemKe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBienBanChuaKiemKe.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
