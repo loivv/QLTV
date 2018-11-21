@@ -407,14 +407,97 @@
       <DependentUpon>rptTheThuVien.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\BangKeAnPham\BangKiemKeCommon.cs" />
+    <Compile Include="Report\BangKeAnPham\rptAnPhamMuonNhieuNhat.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptAnPhamMuonNhieuNhat.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BangKeAnPham\rptBangKeAnPhamDangMuon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBangKeAnPhamDangMuon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\BangKeAnPham\rptBangKeAnPhamHienCo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBangKeAnPhamHienCo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\KiemKe\KiemKe.cs" />
+    <Compile Include="Report\KiemKe\rptBienBanKiemKe.cs">
+      <DependentUpon>rptBienBanKiemKe.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Report\KiemKe\rptBienBanChuaKiemKe.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptBienBanChuaKiemKe.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\LuuThong\BCNhapKho.cs" />
+    <Compile Include="Report\LuuThong\rptPhieuNhapKho.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPhieuNhapKho.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\ReportCommonData.cs" />
     <Compile Include="Report\ReportUtils.cs" />
+    <Compile Include="Report\rptBaoCaoTon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBaoCaoTon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rptBBMuonSach.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBBMuonSach.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\rptBBThanhLy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBBThanhLy.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoDangKyCaBiet\rptBiaSo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBiaSo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoDangKyCaBiet\rptPhan1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPhan1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoDangKyCaBiet\rptToXacNhan.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptToXacNhan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoDangKyCaBiet\SoDangKyCaBietCommon.cs" />
+    <Compile Include="Report\SoGiaoVien\rptBiaSo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBiaSo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoGiaoVien\rptSoMuonSach.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptSoMuonSach.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\SoGiaoVien\SoMuonSach.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -928,6 +1011,7 @@
     <Content Include="Scripts\quantri\quantri.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\showpdf.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-2.5.0.min.js" />
     <Content Include="Scripts\uploader.min.js" />
     <Content Include="Web.config">
@@ -994,7 +1078,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Report\BangKeAnPham\" />
     <Folder Include="Views\BaoCAo\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Menu\" />
@@ -1023,9 +1106,61 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTheThuVien.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\BangKeAnPham\rptAnPhamMuonNhieuNhat.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptAnPhamMuonNhieuNhat.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BangKeAnPham\rptBangKeAnPhamDangMuon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBangKeAnPhamDangMuon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\BangKeAnPham\rptBangKeAnPhamHienCo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBangKeAnPhamHienCo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\KiemKe\rptBienBanKiemKe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBienBanKiemKe.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\KiemKe\rptBienBanChuaKiemKe.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBienBanChuaKiemKe.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\LuuThong\rptPhieuNhapKho.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPhieuNhapKho.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBaoCaoTon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBaoCaoTon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBBMuonSach.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBBMuonSach.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBBThanhLy.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBBThanhLy.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SoDangKyCaBiet\rptBiaSo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBiaSo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SoDangKyCaBiet\rptPhan1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPhan1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SoDangKyCaBiet\rptToXacNhan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptToXacNhan.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SoGiaoVien\rptBiaSo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBiaSo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\SoGiaoVien\rptSoMuonSach.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSoMuonSach.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

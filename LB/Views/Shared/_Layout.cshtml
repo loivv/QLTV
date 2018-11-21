@@ -71,6 +71,14 @@
         hr.style1 {
             border-top: 1px solid #8c8b8b;
         }
+
+        #the-canvas {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
     </style>
 
     @RenderSection("styles", false)
@@ -146,6 +154,27 @@
 
                 }
             }
+
+
+            <div id="showreport" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button id="prev">Previous</button>
+                            <button id="next">Next</button>
+                            &nbsp; &nbsp;
+                            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <canvas id="the-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer>
                 <div class="pull-right">
                     CÔNG TY TNHH THIẾT BỊ VÀ CÔNG NGHỆ PHẦN MỀM AN PHÁT
@@ -181,6 +210,8 @@
     <script src="~/Scripts/angular-select2.js"></script>
 
     <script src="~/Scripts/myscripts.js"></script>
+
+    <script src="~/Scripts/showpdf.js"></script>
 
     @RenderSection("Scripts", false)
 

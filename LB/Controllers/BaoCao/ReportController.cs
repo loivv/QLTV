@@ -25,11 +25,8 @@ namespace LB.Controllers.BaoCao
         public ActionResult GetReport()
         {
             ReportUtils utils = new ReportUtils(db);
-           
-            List<string> dsDocGia = new List<string>();
-            dsDocGia.Add("loivv");
-
-            return File(utils.RptTheThuVien(dsDocGia, "LQDON"), "application/pdf");
+     
+            return File(utils.RptPhieuNhapKho("LQDON"), "application/pdf");
            
         }
     }
